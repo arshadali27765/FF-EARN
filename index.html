@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Fire Tournament App</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0d1117, #111827 40%, #1a1a2e);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 24px;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffb703;
+      letter-spacing: 1px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #dfe6f0;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff8a00, #ff3d00);
+      color: white;
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(255,121,0,0.18), rgba(17,24,39,0.9));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+
+    .hero-content p {
+      color: #d1d5db;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+      position: relative;
+      min-height: 220px;
+      overflow: hidden;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,196,0,0.18);
+      color: #ffd166;
+      border: 1px solid rgba(255,196,0,0.3);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 18px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .mini-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .mini-box strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-top: 6px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .stat-card {
+      background: rgba(17,24,39,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stat-card .label {
+      color: #9ca3af;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .stat-card .value {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .section-title {
+      margin: 36px 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+
+    .section-title a {
+      color: #ffb703;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .tournaments {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .card {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .tournament-image {
+      height: 150px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ff7b00, #ff3d00, #7c2d12);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .tournament-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 20%),
+        linear-gradient(135deg, rgba(0,0,0,0.15), rgba(255,255,255,0.08));
+    }
+
+    .tournament-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .tag {
+      background: rgba(34,197,94,0.15);
+      color: #86efac;
+      border: 1px solid rgba(34,197,94,0.4);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+    }
+
+    .tag.warning {
+      background: rgba(251,191,36,0.15);
+      color: #fcd34d;
+      border: 1px solid rgba(251,191,36,0.4);
+    }
+
+    .card h3 {
+      margin: 8px 0 10px;
+      font-size: 1.25rem;
+    }
+
+    .meta {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffb703;
+    }
+
+    .leaderboard {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(17,24,39,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    th {
+      color: #9ca3af;
+      background: rgba(255,255,255,0.02);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .player {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .ranking-box {
+      background: rgba(17,24,39,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .small-label {
+      color: #9ca3af;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .top-player {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .top-player:last-child {
+      border-bottom: none;
+    }
+
+    .rank {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      background: rgba(255,183,3,0.14);
+      color: #ffd166;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .leaderboard, .tournaments, .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">FIRE ZONE</div>
+      <nav class="nav">
+        <a href="#">Home</a>
+        <a href="#">Tournaments</a>
+        <a href="#">Leaderboard</a>
+        <a href="#">Store</a>
+        <button class="btn btn-primary">Login</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">LIVE TOURNAMENT EVENT</div>
+        <h1>Battle for the ultimate Free Fire crown</h1>
+        <p>
+          Join elite squads, win rewards, and dominate ranked matches in the biggest
+          weekly tournament arena. Play, climb, and earn cash prizes.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary">Join Now</button>
+          <button class="btn" style="background:#0f172a;color:#fff;border:1px solid rgba(255,255,255,0.1);">
+            Watch Streams
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="badge" style="background: rgba(59,130,246,0.12); color:#93c5fd; border-color: rgba(59,130,246,0.3);">
+          Weekly Prize Pool
+        </div>
+        <h2 style="margin:0 0 10px;">$12,500</h2>
+        <div style="color:#cbd5e1;">Top 10 squads fight for a grand finale reward.</div>
+
+        <div class="mini-stats">
+          <div class="mini-box">
+            <span style="color:#9ca3af;font-size:0.8rem;">Players</span>
+            <strong>2,486</strong>
+          </div>
+          <div class="mini-box">
+            <span style="color:#9ca3af;font-size:0.8rem;">Matches</span>
+            <strong>128</strong>
+          </div>
+          <div class="mini-box">
+            <span style="color:#9ca3af;font-size:0.8rem;">Active</span>
+            <strong>96%</strong>
+          </div>
+          <div class="mini-box">
+            <span style="color:#9ca3af;font-size:0.8rem;">Rewards</span>
+            <strong>14</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <span class="label">Total Tournaments</span>
+        <div class="value">486</div>
+      </div>
+      <div class="stat-card">
+        <span class="label">Players Online</span>
+        <div class="value">12.4K</div>
+      </div>
+      <div class="stat-card">
+        <span class="label">Avg. Win Rate</span>
+        <div class="value">68%</div>
+      </div>
+      <div class="stat-card">
+        <span class="label">Prize Money</span>
+        <div class="value">$84K</div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>Upcoming Tournaments</h2>
+      <a href="#">View all</a>
+    </div>
+
+    <section class="tournaments" id="tournaments"></section>
+
+    <div class="section-title">
+      <h2>Leaderboard</h2>
+      <a href="#">See ranking</a>
+    </div>
+
+    <section class="leaderboard">
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Wins</th>
+              <th>K/D</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardTable"></tbody>
+        </table>
+      </div>
+
+      <div class="ranking-box">
+        <span class="small-label">Top Players</span>
+        <div id="topPlayers"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const tournaments = [
+      {
+        name: "Royal Clash Cup",
+        mode: "Squad Mode",
+        prize: "$2,500",
+        status: "Live",
+        type: "Squad",
+        slots: "32/50",
+        fee: "$10"
+      },
+      {
+        name: "Desert Storm Arena",
+        mode: "Battle Royale",
+        prize: "$1,800",
+        status: "Soon",
+        type: "Solo",
+        slots: "18/40",
+        fee: "$8"
+      },
+      {
+        name: "Night Raid Finals",
+        mode: "Ranked",
+        prize: "$3,200",
+        status: "Live",
+        type: "Squad",
+        slots: "44/64",
+        fee: "$12"
+      }
+    ];
+
+    const leaderboard = [
+      { name: "BlazeRanger", wins: 118, kd: "2.94", points: 1620 },
+      { name: "ShadowFox", wins: 110, kd: "2.76", points: 1575 },
+      { name: "ZeroStrike", wins: 104, kd: "2.58", points: 1498 },
+      { name: "RiotMaverick", wins: 98, kd: "2.41", points: 1440 },
+      { name: "NovaViper", wins: 94, kd: "2.33", points: 1389 }
+    ];
+
+    const tournamentsContainer = document.getElementById("tournaments");
+    tournamentsContainer.innerHTML = tournaments.map((t, index) => `
+      <article class="card">
+        <div class="tournament-image"></div>
+        <div class="tournament-top">
+          <span class="tag ${t.status === "Soon" ? "warning" : ""}">${t.status}</span>
+          <span style="color:#9ca3af;">${t.type}</span>
+        </div>
+        <h3>${t.name}</h3>
+        <div class="meta">
+          <span>${t.mode}</span>
+          <span>${t.slots}</span>
+        </div>
+        <div class="meta">
+          <span>Entry: ${t.fee}</span>
+          <span>${t.prize}</span>
+        </div>
+        <div class="card-footer">
+          <div class="price">${t.prize}</div>
+          <button class="btn btn-primary">Join</button>
+        </div>
+      </article>
+    `).join("");
+
+    const leaderboardTable = document.getElementById("leaderboardTable");
+    leaderboardTable.innerHTML = leaderboard.map((player, i) => `
+      <tr>
+        <td>#${i + 1}</td>
+        <td>
+          <div class="player">
+            <div class="avatar">${player.name[0]}</div>
+            <span>${player.name}</span>
+          </div>
+        </td>
+        <td>${player.wins}</td>
+        <td>${player.kd}</td>
+        <td>${player.points}</td>
+      </tr>
+    `).join("");
+
+    const topPlayers = document.getElementById("topPlayers");
+    topPlayers.innerHTML = leaderboard.slice(0, 4).map((player, i) => `
+      <div class="top-player">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span class="rank">${i + 1}</span>
+          <div>
+            <div style="font-weight:700;">${player.name}</div>
+            <small style="color:#9ca3af;">${player.wins} wins</small>
+          </div>
+        </div>
+        <strong>${player.points}</strong>
+      </div>
+    `).join("");
+  </script>
+</body>
+</html>
