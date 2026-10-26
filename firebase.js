@@ -57,10 +57,11 @@ async function loginWithGoogle() {
       winnings: 1850,
       deposit: 0,
       joinedMatches: [],
-      role: window.__FF_EARN_ADMIN_EMAILS__?.includes(user.email || "") ? "admin" : "user"
+      role: (window.__FF_EARN_ADMIN_EMAILS__ || []).includes(user.email || "") ? "admin" : "user"
     };
 
     localStorage.setItem("ff_earn_user", JSON.stringify(profile));
+
     const profileName = document.getElementById("profileName");
     const avatarBadge = document.getElementById("avatarBadge");
     const authModal = document.getElementById("authModal");
@@ -69,9 +70,14 @@ async function loginWithGoogle() {
     if (avatarBadge) avatarBadge.textContent = (profile.ign || "G").slice(0, 1).toUpperCase();
     if (authModal) authModal.classList.add("hidden");
 
-    window.state = window.state || {};
-    window.state.user = profile;
-    window.renderApp?.();
+    if (window.state) {
+      window.state.user = profile;
+    }
+
+    if (window.renderApp) {
+      window.renderApp();
+    }
+
     showToast("Google login successful");
   } catch (error) {
     console.error("Google login failed:", error);
