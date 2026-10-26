@@ -6,10 +6,9 @@
     <meta name="theme-color" content="#0b1020" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="description" content="FF EARN - mobile-first tournament platform with UPI verification" />
-
+    <meta name="description" content="FF EARN - Free Fire tournament platform with UPI verification and admin approval" />
+    <title>FF EARN</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
       window.__FF_EARN_FIREBASE_CONFIG__ = {
         apiKey: "AIzaSyAk4aGFODZvT-DAdy7TN0zBm90WMd4VLhM",
@@ -23,10 +22,9 @@
 
       window.__FF_EARN_ADMIN_EMAILS__ = ["arashadali1140@gmail.com"];
       window.__FF_EARN_UPI_ID__ = "9631991140@ybl";
+      window.__FF_EARN_APP_NAME__ = "FF EARN";
     </script>
-
     <script type="module" src="./firebase.js"></script>
-
     <script>
       tailwind.config = {
         theme: {
@@ -49,14 +47,33 @@
         }
       };
     </script>
-
     <style>
+      :root {
+        --bg-1: #0b1020;
+        --bg-2: #101827;
+        --panel: rgba(17, 24, 39, 0.9);
+        --card: rgba(18, 27, 45, 0.95);
+        --neon: #0df2c9;
+        --neon-2: #46d2ff;
+        --gold: #f8c24d;
+        --danger: #ff5e7b;
+        --muted: #b9c4dc;
+      }
+
       html { scroll-behavior: smooth; }
+
       body {
         background:
-          radial-gradient(circle at top, rgba(13,242,201,0.08), transparent 35%),
+          radial-gradient(circle at top, rgba(13,242,201,0.08), transparent 38%),
           linear-gradient(180deg, #0b1020 0%, #0d1323 100%);
-        color: #e5eefb;
+        color: #edf5ff;
+        min-height: 100vh;
+      }
+
+      .glass {
+        background: rgba(17,24,39,0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.08);
       }
 
       .game-card {
@@ -72,7 +89,7 @@
 
       .qr-grid {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(7, minmax(0, 1fr));
         gap: 2px;
       }
 
@@ -106,9 +123,16 @@
       }
 
       .hidden-panel { display: none; }
+      .proof-thumb {
+        width: 100%;
+        max-height: 150px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.08);
+        margin-top: 10px;
+      }
     </style>
   </head>
-
   <body class="min-h-screen">
     <div class="mx-auto min-h-screen max-w-7xl px-3 pb-20 pt-4 sm:px-4">
       <header class="mb-4 rounded-3xl border border-white/10 bg-slate-950/70 p-3 shadow-neon backdrop-blur-md">
@@ -122,8 +146,7 @@
           </div>
 
           <div class="flex items-center gap-2">
-            <button id="adminToggle" class="hidden rounded-full border border-white/10 bg-slate-800/80 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-slate-200 transition hover:border-neon/60 hover:text-neon">Admin</button>
-
+            <button id="adminToggle" class="hidden rounded-full border border-white/10 bg-slate-800/80 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-slate-200 transition hover:border-neon/40 hover:text-white">Admin</button>
             <button id="profileBtn" class="flex items-center gap-2 rounded-full border border-white/10 bg-slate-800/90 px-3 py-2 text-xs font-medium text-white">
               <span id="avatarBadge" class="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-neon to-cyan-400 font-bold text-slate-950">P</span>
               <span id="profileName">Guest</span>
@@ -203,14 +226,13 @@
             <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Available</p>
             <h2 class="text-xl font-bold text-white">Tournament List</h2>
           </div>
-          <div class="flex gap-2">
+          <div class="flex flex-wrap gap-2">
             <button class="mode-btn active rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neon" data-mode="all">All</button>
             <button class="mode-btn rounded-full border border-white/10 bg-slate-800/80 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-200" data-mode="Solo">Solo</button>
             <button class="mode-btn rounded-full border border-white/10 bg-slate-800/80 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-200" data-mode="Duo">Duo</button>
             <button class="mode-btn rounded-full border border-white/10 bg-slate-800/80 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-200" data-mode="Squad">Squad</button>
           </div>
         </div>
-
         <div id="matchesContainer" class="space-y-4"></div>
       </section>
 
@@ -312,13 +334,8 @@
             </div>
           </div>
 
-          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">
-            Continue
-          </button>
-
-          <button id="googleLoginBtn" type="button" class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold uppercase tracking-wide text-white">
-            Continue with Google
-          </button>
+          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">Continue</button>
+          <button id="googleLoginBtn" type="button" class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold uppercase tracking-wide text-white">Continue with Google</button>
         </form>
       </div>
     </div>
@@ -369,26 +386,23 @@
 
           <div>
             <label class="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Payment Proof / Screenshot</label>
-            <input id="proofInput" type="file" accept="image/*" class="w-full rounded-xl border border-dashed border-white/10 bg-slate-900/80 p-3 text-xs text-slate-300 file:mr-3 file:rounded-full file:border-0 file:bg-neon/20 file:px-3 file:py-2 file:text-xs file:font-bold file:text-neon" />
+            <input id="proofInput" type="file" accept="image/*" class="w-full rounded-xl border border-dashed border-white/10 bg-slate-900/80 p-3 text-xs text-slate-300 file:mr-3 file:rounded-full file:border-0 file:bg-neon file:px-3 file:py-1 file:text-xs file:font-bold file:text-slate-950" />
           </div>
 
-          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">
-            Pay & Join Match
-          </button>
+          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">Pay & Join Match</button>
         </form>
       </div>
     </div>
 
-    <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-[60] hidden -translate-x-1/2 rounded-full border border-neon/30 bg-slate-950/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white">
-      Toast
-    </div>
+    <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-[60] hidden -translate-x-1/2 rounded-full border border-neon/30 bg-slate-950/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-neon shadow-neon">Toast</div>
 
     <script>
       const STORAGE_KEYS = {
         user: "ff_earn_user",
         tournaments: "ff_earn_tournaments",
         payments: "ff_earn_payments",
-        leaderboard: "ff_earn_leaderboard"
+        leaderboard: "ff_earn_leaderboard",
+        settings: "ff_earn_settings"
       };
 
       function getISOLocalDate(dayOffset, hour, minute) {
@@ -409,11 +423,11 @@
       ];
 
       const defaultTournaments = [
-        { id: "solo-bermuda-01", title: "Bermuda Solo Rush", mode: "Solo", map: "Bermuda", mapType: "Classic", perKill: 35, entryFee: 79, prizePool: 4200, maxSlots: 50, start: getISOLocalDate(1, 20, 15), joinedPlayers: [{ uid: "1001", ign: "NovaAlpha", status: "Verified" }, { uid: "1002", ign: "RaptorX", status: "Verified" }, { uid: "1003", ign: "StormPrime", status: "Verified" }] },
-        { id: "duo-purgatory-02", title: "Purgatory Duo Clash", mode: "Duo", map: "Purgatory", mapType: "Arena", perKill: 42, entryFee: 120, prizePool: 7800, maxSlots: 32, start: getISOLocalDate(2, 19, 30), joinedPlayers: [{ uid: "2001", ign: "PhantomRush", status: "Verified" }, { uid: "2002", ign: "RedFire", status: "Verified" }, { uid: "2003", ign: "DreadMoth", status: "Verified" }] },
-        { id: "squad-sky-03", title: "Skyfire Squad Showdown", mode: "Squad", map: "Bermuda", mapType: "TDM", perKill: 50, entryFee: 180, prizePool: 12000, maxSlots: 24, start: getISOLocalDate(3, 21, 0), joinedPlayers: [{ uid: "3001", ign: "AlphaMight", status: "Verified" }, { uid: "3002", ign: "ZeroFocus", status: "Verified" }, { uid: "3003", ign: "RogueNode", status: "Verified" }] },
-        { id: "solo-rapid-04", title: "Rapid Solo Royale", mode: "Solo", map: "Purgatory", mapType: "Rush", perKill: 28, entryFee: 65, prizePool: 2800, maxSlots: 40, start: getISOLocalDate(0, 18, 45), joinedPlayers: [{ uid: "4001", ign: "BlazeOni", status: "Verified" }, { uid: "4002", ign: "LaserVik", status: "Verified" }] },
-        { id: "duo-night-05", title: "Night Raid Duo", mode: "Duo", map: "Bermuda", mapType: "Night Ops", perKill: 40, entryFee: 110, prizePool: 6400, maxSlots: 28, start: getISOLocalDate(4, 22, 30), joinedPlayers: [{ uid: "5001", ign: "DarkEcho", status: "Verified" }, { uid: "5002", ign: "PixelFox", status: "Verified" }, { uid: "5003", ign: "IronHawk", status: "Verified" }] }
+        { id: "solo-bermuda-01", title: "Bermuda Solo Rush", mode: "Solo", map: "Bermuda", mapType: "Classic", perKill: 35, entryFee: 79, prizePool: 4200, maxSlots: 50, start: getISOLocalDate(1, 20, 15), joinedPlayers: [] },
+        { id: "duo-purgatory-02", title: "Purgatory Duo Clash", mode: "Duo", map: "Purgatory", mapType: "Arena", perKill: 42, entryFee: 120, prizePool: 7800, maxSlots: 32, start: getISOLocalDate(2, 19, 45), joinedPlayers: [] },
+        { id: "squad-sky-03", title: "Skyfire Squad Showdown", mode: "Squad", map: "Bermuda", mapType: "TDM", perKill: 50, entryFee: 180, prizePool: 12000, maxSlots: 24, start: getISOLocalDate(3, 21, 0), joinedPlayers: [] },
+        { id: "solo-rapid-04", title: "Rapid Solo Royale", mode: "Solo", map: "Purgatory", mapType: "Rush", perKill: 28, entryFee: 65, prizePool: 2800, maxSlots: 40, start: getISOLocalDate(0, 18, 45), joinedPlayers: [] },
+        { id: "duo-night-05", title: "Night Raid Duo", mode: "Duo", map: "Bermuda", mapType: "Night Ops", perKill: 40, entryFee: 110, prizePool: 6400, maxSlots: 28, start: getISOLocalDate(4, 22, 30), joinedPlayers: [] }
       ];
 
       function loadFromStorage(key, fallback) {
@@ -439,7 +453,7 @@
         toast.textContent = message;
         toast.classList.remove("hidden");
         clearTimeout(showToast.timeoutId);
-        showToast.timeoutId = setTimeout(() => toast.classList.add("hidden"), 2100);
+        showToast.timeoutId = setTimeout(() => toast.classList.add("hidden"), 2200);
       }
 
       function isAdminEmail(email) {
@@ -447,11 +461,44 @@
         return Boolean(email && emails.some((item) => item.toLowerCase() === String(email).toLowerCase()));
       }
 
+      function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function normalizeUser(raw) {
+        if (!raw) return null;
+        return {
+          ign: raw.ign || "Player",
+          uid: raw.uid || "",
+          email: raw.email || "",
+          photoURL: raw.photoURL || "",
+          walletBalance: Number(raw.walletBalance || 0),
+          winnings: Number(raw.winnings || 0),
+          deposit: Number(raw.deposit || 0),
+          joinedMatches: Array.isArray(raw.joinedMatches) ? raw.joinedMatches : [],
+          role: raw.role || (isAdminEmail(raw.email) ? "admin" : "user")
+        };
+      }
+
+      function getDefaultSettings() {
+        return {
+          appName: window.__FF_EARN_APP_NAME__ || "FF EARN",
+          upiId: window.__FF_EARN_UPI_ID__ || "9631991140@ybl",
+          adminEmails: Array.isArray(window.__FF_EARN_ADMIN_EMAILS__) ? window.__FF_EARN_ADMIN_EMAILS__ : []
+        };
+      }
+
       window.state = {
-        user: loadFromStorage(STORAGE_KEYS.user, null),
+        user: normalizeUser(loadFromStorage(STORAGE_KEYS.user, null)),
         tournaments: loadFromStorage(STORAGE_KEYS.tournaments, defaultTournaments),
         payments: loadFromStorage(STORAGE_KEYS.payments, []),
         leaderboard: loadFromStorage(STORAGE_KEYS.leaderboard, defaultLeaderboard),
+        settings: { ...getDefaultSettings(), ...(loadFromStorage(STORAGE_KEYS.settings, {})) },
         activeTab: "matches",
         selectedMatchId: null,
         filterMode: "all"
@@ -496,6 +543,7 @@
         saveToStorage(STORAGE_KEYS.tournaments, window.state.tournaments);
         saveToStorage(STORAGE_KEYS.payments, window.state.payments);
         saveToStorage(STORAGE_KEYS.leaderboard, window.state.leaderboard);
+        saveToStorage(STORAGE_KEYS.settings, window.state.settings);
       }
 
       function renderProfile() {
@@ -528,12 +576,18 @@
       }
 
       function getRoomStatus(match) {
+        if (!match || !match.start) {
+          return { unlocked: false, label: "Room not available yet", roomId: null, roomCode: null };
+        }
+
         const start = new Date(match.start).getTime();
         const now = Date.now();
         const unlockTime = start - 15 * 60 * 1000;
+
         if (now >= unlockTime) {
           return { unlocked: true, label: "Room details open", roomId: match.roomId || "FFBR-1912", roomCode: match.roomCode || "NOVA@88" };
         }
+
         const mins = Math.max(0, Math.ceil((unlockTime - now) / 60000));
         return { unlocked: false, label: `${mins} min left to unlock room`, roomId: null, roomCode: null };
       }
@@ -541,7 +595,6 @@
       function renderMatches() {
         const filter = window.state.filterMode;
         const user = window.state.user;
-
         const filtered = window.state.tournaments.filter((match) => (filter === "all" ? true : match.mode === filter));
 
         if (!filtered.length) {
@@ -550,8 +603,8 @@
         }
 
         window.ui.matchesContainer.innerHTML = filtered.map((match) => {
-          const joined = match.joinedPlayers.some((player) => player.uid === user?.uid);
-          const availableSlots = Math.max(0, match.maxSlots - match.joinedPlayers.length);
+          const joined = Array.isArray(match.joinedPlayers) && match.joinedPlayers.some((player) => player.uid === user?.uid);
+          const availableSlots = Math.max(0, Number(match.maxSlots || 0) - (Array.isArray(match.joinedPlayers) ? match.joinedPlayers.length : 0));
           const roomStatus = getRoomStatus(match);
 
           return `
@@ -562,14 +615,13 @@
                     <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">${match.mode}</p>
                     <h3 class="mt-1 text-lg font-black text-white">${match.title}</h3>
                   </div>
-                  <span class="chip rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-neon">${match.map}</span>
+                  <span class="chip rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-neon">${match.map || "Bermuda"}</span>
                 </div>
               </div>
-
               <div class="p-3">
                 <div class="grid grid-cols-2 gap-2 text-sm">
-                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Map Type</p><p class="mt-1 font-semibold text-white">${match.mapType}</p></div>
-                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Per Kill</p><p class="mt-1 font-semibold text-gold">${formatMoney(match.perKill)}</p></div>
+                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Map Type</p><p class="mt-1 font-semibold text-white">${match.mapType || "Classic"}</p></div>
+                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Per Kill</p><p class="mt-1 font-semibold text-gold">₹${Number(match.perKill || 0)}</p></div>
                   <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Entry Fee</p><p class="mt-1 font-semibold text-neon">${formatMoney(match.entryFee)}</p></div>
                   <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Prize Pool</p><p class="mt-1 font-semibold text-white">${formatMoney(match.prizePool)}</p></div>
                 </div>
@@ -611,7 +663,6 @@
             </article>
           `;
         }).join("");
-
       }
 
       function renderMyMatches() {
@@ -622,10 +673,9 @@
         }
 
         const joinedMatches = user.joinedMatches.map((matchId) => getMatchById(matchId)).filter(Boolean);
-
         window.ui.myMatchesContainer.innerHTML = joinedMatches.map((match) => {
           const roomStatus = getRoomStatus(match);
-          const joinedPlayer = match.joinedPlayers.find((p) => p.uid === user.uid);
+          const joinedPlayer = (match.joinedPlayers || []).find((p) => p.uid === user.uid);
           const statusText = joinedPlayer?.status || "Verified";
 
           return `
@@ -731,10 +781,12 @@
                 <p>Amount: ${formatMoney(payment.amount || 0)}</p>
               </div>
 
+              ${payment.proofDataUrl ? `<img class="proof-thumb" src="${payment.proofDataUrl}" alt="Proof" />` : ""}
+
               ${payment.status === "Pending" ? `
                 <div class="mt-3 flex gap-2">
                   <button data-action="approve-payment" data-payment-id="${payment.id}" class="flex-1 rounded-xl bg-neon px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-950">Approve</button>
-                  <button data-action="reject-payment" data-payment-id="${payment.id}" class="flex-1 rounded-xl border border-white/10 bg-slate-800/80 px-3 py-2 text-xs font-bold uppercase tracking-wide text-white">Reject</button>
+                  <button data-action="reject-payment" data-payment-id="${payment.id}" class="flex-1 rounded-xl border border-white/10 bg-slate-800/80 px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-200">Reject</button>
                 </div>
               ` : ""}
             </div>
@@ -800,7 +852,8 @@
       }
 
       function renderQR() {
-        const matrix = generateQRMatrix(window.__FF_EARN_UPI_ID__ || "9631991140@ybl");
+        const seed = window.state.settings?.upiId || window.__FF_EARN_UPI_ID__ || "9631991140@ybl";
+        const matrix = generateQRMatrix(seed);
         window.ui.upiQr.innerHTML = "";
         matrix.forEach((row) => {
           row.forEach((cell) => {
@@ -819,11 +872,23 @@
         window.ui.authModal.classList.add("hidden");
       }
 
+      function finishLogin(profile) {
+        const normalized = normalizeUser(profile);
+        if (!normalized) return;
+
+        window.state.user = normalized;
+        saveState();
+        closeAuth();
+        renderApp();
+        showToast(normalized.role === "admin" ? "Admin login successful" : "Welcome to FF EARN");
+      }
+
       window.ui.profileBtn.addEventListener("click", () => {
         if (!window.state.user) {
           openAuth();
           return;
         }
+
         window.state.user = null;
         saveState();
         renderApp();
@@ -840,20 +905,16 @@
           return;
         }
 
-        window.state.user = {
+        finishLogin({
           ign,
           uid,
           walletBalance: 2500,
           winnings: 1850,
           deposit: 0,
           joinedMatches: [],
-          role: isAdminEmail(ign) ? "admin" : "user"
-        };
-
-        saveState();
-        closeAuth();
-        renderApp();
-        showToast("Welcome to FF EARN");
+          role: isAdminEmail(ign) ? "admin" : "user",
+          email: ""
+        });
       });
 
       window.ui.tabButtons.forEach((button) => button.addEventListener("click", () => setTab(button.dataset.tab)));
@@ -885,7 +946,7 @@
           window.ui.joinModalMatchTitle.textContent = match.title;
           window.ui.joinFee.textContent = formatMoney(match.entryFee);
           window.ui.joinPrize.textContent = formatMoney(match.prizePool);
-          window.ui.upiId.textContent = window.__FF_EARN_UPI_ID__ || "9631991140@ybl";
+          window.ui.upiId.textContent = window.state.settings.upiId || window.__FF_EARN_UPI_ID__ || "9631991140@ybl";
           renderQR();
 
           window.ui.joinModal.classList.remove("hidden");
@@ -904,28 +965,30 @@
         if (!payment) return;
 
         if (action === "approve-payment") {
-          payment.status = "Approved";
-
-          const user = window.state.user;
-          if (!user || user.role !== "admin") {
+          if (!window.state.user || window.state.user.role !== "admin") {
             showToast("Admin access required");
             return;
           }
 
-          const match = getMatchById(payment.matchId);
+          payment.status = "Approved";
 
-          const existingUserData = loadFromStorage(STORAGE_KEYS.user, null);
-          if (existingUserData && existingUserData.uid === payment.userUid) {
-            existingUserData.walletBalance = Number(existingUserData.walletBalance || 0) + Number(payment.amount || 0);
-            existingUserData.deposit = Number(existingUserData.deposit || 0) + Number(payment.amount || 0);
-            if (!Array.isArray(existingUserData.joinedMatches)) existingUserData.joinedMatches = [];
-            if (!existingUserData.joinedMatches.includes(payment.matchId)) existingUserData.joinedMatches.push(payment.matchId);
-            window.state.user = existingUserData;
-            saveToStorage(STORAGE_KEYS.user, existingUserData);
+          const match = getMatchById(payment.matchId);
+          const userData = normalizeUser(loadFromStorage(STORAGE_KEYS.user, null));
+          if (userData && userData.uid === payment.userUid) {
+            userData.walletBalance = Number(userData.walletBalance || 0) + Number(payment.amount || 0);
+            userData.deposit = Number(userData.deposit || 0) + Number(payment.amount || 0);
+            if (!Array.isArray(userData.joinedMatches)) userData.joinedMatches = [];
+            if (!userData.joinedMatches.includes(payment.matchId)) userData.joinedMatches.push(payment.matchId);
+            window.state.user = userData;
+            saveToStorage(STORAGE_KEYS.user, userData);
           }
 
-          if (match && !match.joinedPlayers.some((p) => p.uid === payment.userUid)) {
-            match.joinedPlayers.push({ uid: payment.userUid, ign: payment.userIgn, status: "Verified" });
+          if (match && Array.isArray(match.joinedPlayers)) {
+            if (!match.joinedPlayers.some((p) => p.uid === payment.userUid)) {
+              match.joinedPlayers.push({ uid: payment.userUid, ign: payment.userIgn, status: "Verified" });
+            }
+          } else if (match) {
+            match.joinedPlayers = [{ uid: payment.userUid, ign: payment.userIgn, status: "Verified" }];
           }
 
           saveState();
@@ -941,7 +1004,7 @@
         }
       });
 
-      window.ui.joinForm.addEventListener("submit", (event) => {
+      window.ui.joinForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         if (!ensureUserProfile()) return;
 
@@ -959,6 +1022,15 @@
           return;
         }
 
+        let proofDataUrl = "";
+        if (proofInput && proofInput.files && proofInput.files[0]) {
+          try {
+            proofDataUrl = await readFileAsDataURL(proofInput.files[0]);
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
         const payment = {
           id: `pay_${Date.now()}`,
           userIgn: window.state.user.ign,
@@ -967,6 +1039,7 @@
           amount: Number(match.entryFee || 0),
           utr,
           proofName: proofInput && proofInput.files && proofInput.files[0] ? proofInput.files[0].name : "manual-upload",
+          proofDataUrl,
           status: "Pending",
           createdAt: new Date().toISOString()
         };
@@ -1038,6 +1111,7 @@
       window.renderApp = renderApp;
       window.saveState = saveState;
       window.ensureUserProfile = ensureUserProfile;
+      window.__FF_EARN_APP__ = { renderApp, saveState, ensureUserProfile };
     </script>
   </body>
-  </html>
+</html>
