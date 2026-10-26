@@ -6,25 +6,25 @@
     <meta name="theme-color" content="#0b1020" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta
-      name="description"
-      content="FF EARN - Free Fire Esports & Tournament app for mobile-first tournament entry and verification."
-    />
+    <meta name="description" content="FF EARN - mobile-first paid tournament platform with UPI verification" />
 
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230b1020'/%3E%3Cpath d='M110 170h292c18 0 32 14 32 32v108c0 18-14 32-32 32H110c-18 0-32-14-32-32V202c0-18 14-32 32-32zm16 48h260v64H126v-64zm24 102h212v32H150v-32zm60-218h92v36h-92v-36z' fill='%230df2c9'/%3E%3Cpath d='M214 264h82v28h-82zm0 0v-28' fill='%23f8c24d'/%3E%3C/svg%3E"
-    />
-
-    <link
-      rel="apple-touch-icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230b1020'/%3E%3Cpath d='M110 170h292c18 0 32 14 32 32v108c0 18-14 32-32 32H110c-18 0-32-14-32-32V202c0-18 14-32 32-32zm16 48h260v64H126v-64zm24 102h212v32H150v-32zm60-218h92v36h-92v-36z' fill='%230df2c9'/%3E%3Cpath d='M214 264h82v28h-82zm0 0v-28' fill='%23f8c24d'/%3E%3C/svg%3E"
-    />
-
-    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22FF%20EARN%22%2C%22short_name%22%3A%22FF%20EARN%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230b1020%22%2C%22theme_color%22%3A%22%230b1020%22%2C%22description%22%3A%22Free%20Fire%20Tournament%20and%20Esports%20App%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%2780%27%20fill%3D%27%230b1020%27/%253E%253Cpath%20d%3D%27M110%20170h292c18%200%2032%2014%2032%2032v108c0%2018-14%2032-32%2032H110c-18%200-32-14-32-32V202c0-18%2014-32%2032-32zm16%2048h260v64H126v-64zm24%20102h212v32H150v-32zm60-218h92v36h-92v-36z%27%20fill%3D%27%230df2c9%27/%253E%253Cpath%20d%3D%27M214%20264h82v28h-82zm0%200v-28%27%20fill%3D%27%23f8c24d%27/%253E%253C/svg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D" />
-
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230b1020'/%3E%3Cpath d='M110 170h292c18 0 32 14 32 32v108c0 18-14 32-32 32H271l-37 56h-38l39-56H110c-18 0-32-14-32-32V202c0-18 14-32 32-32zm52 88h188v34H162zm0 62h126v34H162z' fill='%230df2c9'/%3E%3C/svg%3E" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      window.__FF_EARN_FIREBASE_CONFIG__ = {
+        apiKey: "",
+        authDomain: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: ""
+      };
+      window.__FF_EARN_ADMIN_EMAILS__ = ["admin@example.com"];
+      window.__FF_EARN_UPI_ID__ = "yourname@upi";
+    </script>
+    <script type="module" src="./firebase.js"></script>
+
     <script>
       tailwind.config = {
         theme: {
@@ -49,74 +49,29 @@
     </script>
 
     <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
+      html { scroll-behavior: smooth; }
       body {
-        background:
-          radial-gradient(circle at top, rgba(13, 242, 201, 0.08), transparent 35%),
-          linear-gradient(180deg, #0b1020 0%, #0d1323 100%);
+        background: radial-gradient(circle at top, rgba(13,242,201,0.08), transparent 35%), linear-gradient(180deg, #0b1020 0%, #0d1323 100%);
         color: #e5eefb;
       }
-
-      .glass {
-        background: rgba(17, 24, 39, 0.88);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .game-card {
-        background: linear-gradient(180deg, rgba(22, 31, 49, 0.95), rgba(12, 18, 29, 0.9));
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
-      }
-
-      .chip {
-        border: 1px solid rgba(13, 242, 201, 0.28);
-        background: rgba(13, 242, 201, 0.08);
-      }
-
-      .qr-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 2px;
-      }
-
-      .qr-grid div {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 3px;
-        background: rgba(13, 242, 201, 0.15);
-      }
-
-      .qr-grid div.dark {
-        background: rgba(14, 215, 196, 0.96);
-      }
-
-      .muted-scroll::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      .muted-scroll::-webkit-scrollbar-thumb {
-        background: rgba(148, 163, 184, 0.35);
-        border-radius: 999px;
-      }
-
-      .hidden-panel {
-        display: none;
-      }
+      .glass { background: rgba(17,24,39,0.88); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); }
+      .game-card { background: linear-gradient(180deg, rgba(22,31,49,0.95), rgba(12,18,29,0.9)); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 40px rgba(0,0,0,0.18); }
+      .chip { border: 1px solid rgba(13,242,201,0.28); background: rgba(13,242,201,0.08); }
+      .qr-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+      .qr-grid div { width: 100%; aspect-ratio: 1 / 1; border-radius: 3px; background: rgba(13,242,201,0.15); }
+      .qr-grid div.dark { background: rgba(14,215,196,0.96); }
+      .hidden-panel { display: none; }
+      .pending { background: rgba(248,194,77,0.12); border: 1px solid rgba(248,194,77,0.35); color: #f8c24d; }
+      .approved { background: rgba(13,242,201,0.12); border: 1px solid rgba(13,242,201,0.35); color: #0df2c9; }
+      .rejected { background: rgba(255,94,123,0.12); border: 1px solid rgba(255,94,123,0.35); color: #ff5e7b; }
     </style>
   </head>
   <body class="min-h-screen">
     <div class="mx-auto min-h-screen max-w-7xl px-3 pb-20 pt-4 sm:px-4">
-      <!-- Top Header -->
       <header class="mb-4 rounded-3xl border border-white/10 bg-slate-950/70 p-3 shadow-neon backdrop-blur-md">
         <div class="flex items-center justify-between gap-3">
           <div class="flex items-center gap-3">
-            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-neon/40 to-neon2/30 text-lg font-black text-neon shadow-neon">
-              FF
-            </div>
+            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-neon/40 to-neon2/30 text-lg font-black text-neon shadow-neon">FF</div>
             <div>
               <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Battle Arena</p>
               <h1 class="text-lg font-bold text-white">FF EARN</h1>
@@ -124,17 +79,8 @@
           </div>
 
           <div class="flex items-center gap-2">
-            <button
-              id="adminToggle"
-              class="hidden rounded-full border border-white/10 bg-slate-800/80 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-slate-200 transition hover:border-neon/60 hover:text-neon"
-            >
-              Admin
-            </button>
-
-            <button
-              id="profileBtn"
-              class="flex items-center gap-2 rounded-full border border-white/10 bg-slate-800/90 px-3 py-2 text-xs font-medium text-white"
-            >
+            <button id="adminToggle" class="hidden rounded-full border border-white/10 bg-slate-800/80 px-3 py-2 text-[10px] font-bold uppercase tracking-wide text-slate-200 transition hover:border-neon/60 hover:text-neon">Admin</button>
+            <button id="profileBtn" class="flex items-center gap-2 rounded-full border border-white/10 bg-slate-800/90 px-3 py-2 text-xs font-medium text-white">
               <span id="avatarBadge" class="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-neon to-cyan-400 font-bold text-slate-950">P</span>
               <span id="profileName">Guest</span>
             </button>
@@ -142,42 +88,13 @@
         </div>
       </header>
 
-      <!-- Summary Cards -->
       <section class="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <div class="game-card rounded-2xl p-3">
-          <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Live</p>
-          <div class="mt-2 flex items-end justify-between">
-            <h3 id="liveTournamentsCount" class="text-2xl font-black text-white">0</h3>
-            <span class="text-xs text-neon">Matches</span>
-          </div>
-        </div>
-
-        <div class="game-card rounded-2xl p-3">
-          <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Wallet</p>
-          <div class="mt-2 flex items-end justify-between">
-            <h3 id="walletValue" class="text-xl font-black text-gold">₹0</h3>
-            <span class="text-xs text-gold">Balance</span>
-          </div>
-        </div>
-
-        <div class="game-card rounded-2xl p-3">
-          <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Joined</p>
-          <div class="mt-2 flex items-end justify-between">
-            <h3 id="joinedCount" class="text-2xl font-black text-white">0</h3>
-            <span class="text-xs text-neon2">Tournaments</span>
-          </div>
-        </div>
-
-        <div class="game-card rounded-2xl p-3">
-          <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Prize Pool</p>
-          <div class="mt-2 flex items-end justify-between">
-            <h3 id="prizePoolValue" class="text-xl font-black text-neon">₹0</h3>
-            <span class="text-xs text-neon">Total</span>
-          </div>
-        </div>
+        <div class="game-card rounded-2xl p-3"><p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Live</p><div class="mt-2 flex items-end justify-between"><h3 id="liveTournamentsCount" class="text-2xl font-black text-white">0</h3><span class="text-xs text-neon">Matches</span></div></div>
+        <div class="game-card rounded-2xl p-3"><p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Wallet</p><div class="mt-2 flex items-end justify-between"><h3 id="walletValue" class="text-xl font-black text-gold">₹0</h3><span class="text-xs text-gold">Balance</span></div></div>
+        <div class="game-card rounded-2xl p-3"><p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Joined</p><div class="mt-2 flex items-end justify-between"><h3 id="joinedCount" class="text-2xl font-black text-white">0</h3><span class="text-xs text-neon2">Tournaments</span></div></div>
+        <div class="game-card rounded-2xl p-3"><p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Prize Pool</p><div class="mt-2 flex items-end justify-between"><h3 id="prizePoolValue" class="text-xl font-black text-neon">₹0</h3><span class="text-xs text-neon">Total</span></div></div>
       </section>
 
-      <!-- User Wallet Card -->
       <section class="mb-4 rounded-3xl border border-white/10 bg-slate-950/60 p-4">
         <div class="flex items-center justify-between">
           <div>
@@ -192,25 +109,17 @@
         </div>
 
         <div class="mt-4 grid grid-cols-2 gap-3">
-          <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
-            <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400">Winning</p>
-            <p id="winningValue" class="mt-1 text-xl font-black text-neon">₹0</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
-            <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400">Deposit</p>
-            <p id="depositValue" class="mt-1 text-xl font-black text-gold">₹0</p>
-          </div>
+          <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3"><p class="text-[10px] uppercase tracking-[0.2em] text-slate-400">Winning</p><p id="winningValue" class="mt-1 text-xl font-black text-neon">₹0</p></div>
+          <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3"><p class="text-[10px] uppercase tracking-[0.2em] text-slate-400">Deposit</p><p id="depositValue" class="mt-1 text-xl font-black text-gold">₹0</p></div>
         </div>
       </section>
 
-      <!-- Navigation Tabs -->
       <nav class="mb-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-2">
         <button data-tab="matches" class="tab-btn rounded-xl bg-neon px-2 py-2 text-xs font-bold uppercase tracking-wide text-slate-950 shadow-neon">Matches</button>
         <button data-tab="myMatches" class="tab-btn rounded-xl bg-slate-800/80 px-2 py-2 text-xs font-bold uppercase tracking-wide text-slate-200">My Matches</button>
         <button data-tab="leaderboard" class="tab-btn rounded-xl bg-slate-800/80 px-2 py-2 text-xs font-bold uppercase tracking-wide text-slate-200">Leaderboard</button>
       </nav>
 
-      <!-- Matches Section -->
       <section id="matchesSection" class="tab-section">
         <div class="mb-4 flex items-center justify-between">
           <div>
@@ -228,36 +137,21 @@
         <div id="matchesContainer" class="space-y-4"></div>
       </section>
 
-      <!-- My Matches Section -->
       <section id="myMatchesSection" class="tab-section hidden-panel">
-        <div class="mb-4">
-          <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">History</p>
-          <h2 class="text-xl font-bold text-white">My Matches</h2>
-        </div>
+        <div class="mb-4"><p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">History</p><h2 class="text-xl font-bold text-white">My Matches</h2></div>
         <div id="myMatchesContainer" class="space-y-4"></div>
       </section>
 
-      <!-- Leaderboard -->
       <section id="leaderboardSection" class="tab-section hidden-panel">
-        <div class="mb-4">
-          <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Top Players</p>
-          <h2 class="text-xl font-bold text-white">Leaderboard</h2>
-        </div>
+        <div class="mb-4"><p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Top Players</p><h2 class="text-xl font-bold text-white">Leaderboard</h2></div>
         <div id="leaderboardContainer" class="space-y-3"></div>
       </section>
 
-      <!-- Admin Section -->
       <section id="adminSection" class="tab-section hidden-panel">
-        <div class="mb-4">
-          <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Control Room</p>
-          <h2 class="text-xl font-bold text-white">Admin Panel</h2>
-        </div>
-
+        <div class="mb-4"><p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">Control Room</p><h2 class="text-xl font-bold text-white">Admin Panel</h2></div>
         <div class="grid gap-4 lg:grid-cols-2">
-          <!-- Add Tournament -->
           <div class="game-card rounded-3xl p-4">
             <h3 class="mb-3 text-lg font-bold text-white">Add New Tournament</h3>
-
             <form id="addTournamentForm" class="space-y-3">
               <div class="grid grid-cols-2 gap-3">
                 <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="title" placeholder="Match Title" required />
@@ -267,31 +161,23 @@
                   <option value="Squad">Squad</option>
                 </select>
               </div>
-
               <div class="grid grid-cols-2 gap-3">
-                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="map" placeholder="Map (Bermuda)" value="Bermuda" required />
-                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="mapType" placeholder="Map Type" value="Classic" required />
+                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="map" placeholder="Map (Bermuda)" value="Bermuda" />
+                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="mapType" placeholder="Map Type" value="Classic" />
               </div>
-
               <div class="grid grid-cols-2 gap-3">
-                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="perKill" type="number" placeholder="Per Kill" value="30" required />
-                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="entryFee" type="number" placeholder="Entry Fee" value="99" required />
+                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="perKill" type="number" placeholder="Per Kill" value="35" />
+                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="entryFee" type="number" placeholder="Entry Fee" value="79" />
               </div>
-
               <div class="grid grid-cols-2 gap-3">
-                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="prizePool" type="number" placeholder="Prize Pool" value="5200" required />
-                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="maxSlots" type="number" placeholder="Slots" value="32" required />
+                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="prizePool" type="number" placeholder="Prize Pool" value="4200" />
+                <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="maxSlots" type="number" placeholder="Slots" value="50" />
               </div>
-
               <input class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500" name="start" type="datetime-local" required />
-
-              <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">
-                Add Tournament
-              </button>
+              <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">Add Tournament</button>
             </form>
           </div>
 
-          <!-- Payment Approvals -->
           <div class="game-card rounded-3xl p-4">
             <h3 class="mb-3 text-lg font-bold text-white">Join Requests</h3>
             <div id="adminPaymentList" class="space-y-3"></div>
@@ -300,7 +186,6 @@
       </section>
     </div>
 
-    <!-- Profile/Auth Modal -->
     <div id="authModal" class="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/70 p-4 backdrop-blur-sm sm:items-center">
       <div class="w-full max-w-md rounded-[28px] border border-white/10 bg-slate-950/95 p-5 shadow-[0_25px_90px_rgba(0,0,0,0.45)]">
         <div class="mb-4 flex items-center justify-between">
@@ -316,31 +201,20 @@
             <label class="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Free Fire IGN</label>
             <input id="ignInput" class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-3 text-sm text-white placeholder:text-slate-500" placeholder="e.g. PhantomRush" required />
           </div>
-
           <div>
             <label class="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Free Fire UID</label>
             <input id="uidInput" class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-3 text-sm text-white placeholder:text-slate-500" placeholder="e.g. 987654321" required />
           </div>
-
           <div class="grid grid-cols-2 gap-3">
-            <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
-              <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Wallet</p>
-              <p class="mt-1 text-lg font-black text-gold">₹2,500</p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3">
-              <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Win</p>
-              <p class="mt-1 text-lg font-black text-neon">₹1,850</p>
-            </div>
+            <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Wallet</p><p class="mt-1 text-lg font-black text-gold">₹2,500</p></div>
+            <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-3"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Win</p><p class="mt-1 text-lg font-black text-neon">₹1,850</p></div>
           </div>
-
-          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">
-            Continue
-          </button>
+          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">Continue</button>
+          <button id="googleLoginBtn" type="button" class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold uppercase tracking-wide text-white">Continue with Google</button>
         </form>
       </div>
     </div>
 
-    <!-- Join Match Modal -->
     <div id="joinModal" class="fixed inset-0 z-40 hidden items-end justify-center bg-slate-950/75 p-4 backdrop-blur-sm sm:items-center">
       <div class="w-full max-w-md rounded-[28px] border border-white/10 bg-slate-950/95 p-4 shadow-[0_25px_90px_rgba(0,0,0,0.5)]">
         <div class="mb-3 flex items-center justify-between">
@@ -366,16 +240,14 @@
 
         <div class="mb-3 rounded-2xl border border-white/10 bg-slate-900/80 p-3">
           <div class="mb-3 flex items-center justify-between">
-            <div>
-              <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">UPI QR Code</p>
-            </div>
+            <div><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">UPI QR Code</p></div>
             <div class="rounded-full border border-neon/30 bg-neon/10 px-2 py-1 text-[10px] font-bold uppercase text-neon">Merchant</div>
           </div>
           <div class="flex items-center justify-between gap-3">
             <div id="upiQr" class="qr-grid w-28 rounded-xl bg-slate-800 p-2"></div>
             <div class="flex-1">
               <p class="text-xs text-slate-300">UPI ID</p>
-              <p id="upiId" class="mt-1 font-bold text-white">ffearn@upi</p>
+              <p id="upiId" class="mt-1 font-bold text-white">yourname@upi</p>
             </div>
           </div>
         </div>
@@ -385,180 +257,44 @@
             <label class="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Transaction ID / UTR</label>
             <input id="utrInput" class="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-3 text-sm text-white placeholder:text-slate-500" placeholder="e.g. 1234ABCD5678" required />
           </div>
-
           <div>
             <label class="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Payment Proof / Screenshot</label>
-            <input id="proofInput" type="file" accept="image/*" class="w-full rounded-xl border border-dashed border-white/10 bg-slate-900/80 p-3 text-xs text-slate-300 file:mr-3 file:rounded-full file:border-0 file:bg-neon file:px-3 file:py-2 file:text-xs file:font-bold file:text-slate-950" />
+            <input id="proofInput" type="file" accept="image/*" class="w-full rounded-xl border border-dashed border-white/10 bg-slate-900/80 p-3 text-xs text-slate-300 file:mr-3 file:rounded-full file:border-0 file:bg-neon/20 file:px-3 file:py-2 file:text-xs file:font-bold file:text-neon" />
           </div>
-
-          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">
-            Pay & Join Match
-          </button>
+          <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon">Pay & Join Match</button>
         </form>
       </div>
     </div>
 
-    <!-- Toast -->
-    <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-[60] hidden -translate-x-1/2 rounded-full border border-neon/30 bg-slate-950/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-neon shadow-neon"></div>
+    <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-[60] hidden -translate-x-1/2 rounded-full border border-neon/30 bg-slate-950/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white">Toast</div>
 
     <script>
-      const STORAGE_KEYS = {
-        user: "ff_earn_user",
-        tournaments: "ff_earn_tournaments",
-        payments: "ff_earn_payments",
-        leaderboard: "ff_earn_leaderboard"
-      };
-
-      const defaultLeaderboard = [
-        { name: "ShadowKite", uid: "98123", wins: 28, totalPrize: 18500, badge: "SK" },
-        { name: "NovaAlpha", uid: "91231", wins: 25, totalPrize: 17100, badge: "NA" },
-        { name: "RaptorsX", uid: "87470", wins: 22, totalPrize: 16400, badge: "RX" },
-        { name: "GhostViper", uid: "77810", wins: 20, totalPrize: 14950, badge: "GV" },
-        { name: "StormPrime", uid: "64022", wins: 18, totalPrize: 12400, badge: "SP" }
-      ];
-
-      const defaultTournaments = [
-        {
-          id: "solo-bermuda-01",
-          title: "Bermuda Solo Rush",
-          mode: "Solo",
-          map: "Bermuda",
-          mapType: "Classic",
-          perKill: 35,
-          entryFee: 79,
-          prizePool: 4200,
-          maxSlots: 50,
-          start: getISOLocalDate(1, 20, 15),
-          joinedPlayers: [
-            { uid: "1001", ign: "NovaAlpha", status: "Verified" },
-            { uid: "1002", ign: "RaptorX", status: "Verified" },
-            { uid: "1003", ign: "StormPrime", status: "Verified" }
-          ]
-        },
-        {
-          id: "duo-purgatory-02",
-          title: "Purgatory Duo Clash",
-          mode: "Duo",
-          map: "Purgatory",
-          mapType: "Arena",
-          perKill: 42,
-          entryFee: 120,
-          prizePool: 7800,
-          maxSlots: 32,
-          start: getISOLocalDate(2, 19, 30),
-          joinedPlayers: [
-            { uid: "2001", ign: "PhantomRush", status: "Verified" },
-            { uid: "2002", ign: "RedFire", status: "Verified" },
-            { uid: "2003", ign: "DreadMoth", status: "Verified" }
-          ]
-        },
-        {
-          id: "squad-sky-03",
-          title: "Skyfire Squad Showdown",
-          mode: "Squad",
-          map: "Bermuda",
-          mapType: "TDM",
-          perKill: 50,
-          entryFee: 180,
-          prizePool: 12000,
-          maxSlots: 24,
-          start: getISOLocalDate(3, 21, 0),
-          joinedPlayers: [
-            { uid: "3001", ign: "AlphaMight", status: "Verified" },
-            { uid: "3002", ign: "ZeroFocus", status: "Verified" },
-            { uid: "3003", ign: "RogueNode", status: "Verified" }
-          ]
-        },
-        {
-          id: "solo-rapid-04",
-          title: "Rapid Solo Royale",
-          mode: "Solo",
-          map: "Purgatory",
-          mapType: "Rush",
-          perKill: 28,
-          entryFee: 65,
-          prizePool: 2800,
-          maxSlots: 40,
-          start: getISOLocalDate(0, 18, 45),
-          joinedPlayers: [
-            { uid: "4001", ign: "BlazeOni", status: "Verified" },
-            { uid: "4002", ign: "LaserVik", status: "Verified" }
-          ]
-        },
-        {
-          id: "duo-night-05",
-          title: "Night Raid Duo",
-          mode: "Duo",
-          map: "Bermuda",
-          mapType: "Night Ops",
-          perKill: 40,
-          entryFee: 110,
-          prizePool: 6400,
-          maxSlots: 28,
-          start: getISOLocalDate(4, 22, 30),
-          joinedPlayers: [
-            { uid: "5001", ign: "DarkEcho", status: "Verified" },
-            { uid: "5002", ign: "PixelFox", status: "Verified" },
-            { uid: "5003", ign: "IronHawk", status: "Verified" }
-          ]
-        }
-      ];
+      const STORAGE_KEYS = { user: 'ff_earn_user', tournaments: 'ff_earn_tournaments', payments: 'ff_earn_payments', leaderboard: 'ff_earn_leaderboard' };
 
       function getISOLocalDate(dayOffset, hour, minute) {
         const d = new Date();
         d.setDate(d.getDate() + dayOffset);
         d.setHours(hour, minute, 0, 0);
-
-        // Without timezone conversion issues in local browser:
         const offset = d.getTimezoneOffset();
         d.setMinutes(d.getMinutes() - offset);
-
         return d.toISOString().slice(0, 16);
       }
 
-      let state = {
-        user: loadFromStorage(STORAGE_KEYS.user, null),
-        tournaments: loadFromStorage(STORAGE_KEYS.tournaments, defaultTournaments),
-        payments: loadFromStorage(STORAGE_KEYS.payments, []),
-        leaderboard: loadFromStorage(STORAGE_KEYS.leaderboard, defaultLeaderboard),
-        activeTab: "matches",
-        selectedMatchId: null,
-        filterMode: "all"
-      };
+      const defaultLeaderboard = [
+        { name: 'ShadowKite', uid: '98123', wins: 28, totalPrize: 18500, badge: 'SK' },
+        { name: 'NovaAlpha', uid: '91231', wins: 25, totalPrize: 17100, badge: 'NA' },
+        { name: 'RaptorsX', uid: '87470', wins: 22, totalPrize: 16400, badge: 'RX' },
+        { name: 'GhostViper', uid: '77810', wins: 20, totalPrize: 14950, badge: 'GV' },
+        { name: 'StormPrime', uid: '64022', wins: 18, totalPrize: 12400, badge: 'SP' }
+      ];
 
-      const ui = {
-        authModal: document.getElementById("authModal"),
-        authForm: document.getElementById("authForm"),
-        profileBtn: document.getElementById("profileBtn"),
-        profileName: document.getElementById("profileName"),
-        avatarBadge: document.getElementById("avatarBadge"),
-        userIgn: document.getElementById("userIgn"),
-        userUid: document.getElementById("userUid"),
-        walletValue: document.getElementById("walletValue"),
-        winningValue: document.getElementById("winningValue"),
-        depositValue: document.getElementById("depositValue"),
-        liveTournamentsCount: document.getElementById("liveTournamentsCount"),
-        joinedCount: document.getElementById("joinedCount"),
-        prizePoolValue: document.getElementById("prizePoolValue"),
-        matchesContainer: document.getElementById("matchesContainer"),
-        myMatchesContainer: document.getElementById("myMatchesContainer"),
-        leaderboardContainer: document.getElementById("leaderboardContainer"),
-        adminPaymentList: document.getElementById("adminPaymentList"),
-        joinModal: document.getElementById("joinModal"),
-        joinModalMatchTitle: document.getElementById("joinModalMatchTitle"),
-        joinFee: document.getElementById("joinFee"),
-        joinPrize: document.getElementById("joinPrize"),
-        upiQr: document.getElementById("upiQr"),
-        upiId: document.getElementById("upiId"),
-        joinForm: document.getElementById("joinForm"),
-        adminToggle: document.getElementById("adminToggle"),
-        adminSection: document.getElementById("adminSection"),
-        addTournamentForm: document.getElementById("addTournamentForm"),
-        toast: document.getElementById("toast"),
-        tabButtons: [...document.querySelectorAll(".tab-btn")],
-        modeButtons: [...document.querySelectorAll(".mode-btn")],
-        sections: [...document.querySelectorAll(".tab-section")]
-      };
+      const defaultTournaments = [
+        { id: 'solo-bermuda-01', title: 'Bermuda Solo Rush', mode: 'Solo', map: 'Bermuda', mapType: 'Classic', perKill: 35, entryFee: 79, prizePool: 4200, maxSlots: 50, start: getISOLocalDate(1, 20, 15), joinedPlayers: [{ uid: '1001', ign: 'NovaAlpha', status: 'Verified' }, { uid: '1002', ign: 'RaptorX', status: 'Verified' }, { uid: '1003', ign: 'StormPrime', status: 'Verified' }] },
+        { id: 'duo-purgatory-02', title: 'Purgatory Duo Clash', mode: 'Duo', map: 'Purgatory', mapType: 'Arena', perKill: 42, entryFee: 120, prizePool: 7800, maxSlots: 32, start: getISOLocalDate(2, 19, 30), joinedPlayers: [{ uid: '2001', ign: 'PhantomRush', status: 'Verified' }, { uid: '2002', ign: 'RedFire', status: 'Verified' }, { uid: '2003', ign: 'DreadMoth', status: 'Verified' }] },
+        { id: 'squad-sky-03', title: 'Skyfire Squad Showdown', mode: 'Squad', map: 'Bermuda', mapType: 'TDM', perKill: 50, entryFee: 180, prizePool: 12000, maxSlots: 24, start: getISOLocalDate(3, 21, 0), joinedPlayers: [{ uid: '3001', ign: 'AlphaMight', status: 'Verified' }, { uid: '3002', ign: 'ZeroFocus', status: 'Verified' }, { uid: '3003', ign: 'RogueNode', status: 'Verified' }] },
+        { id: 'solo-rapid-04', title: 'Rapid Solo Royale', mode: 'Solo', map: 'Purgatory', mapType: 'Rush', perKill: 28, entryFee: 65, prizePool: 2800, maxSlots: 40, start: getISOLocalDate(0, 18, 45), joinedPlayers: [{ uid: '4001', ign: 'BlazeOni', status: 'Verified' }, { uid: '4002', ign: 'LaserVik', status: 'Verified' }] },
+        { id: 'duo-night-05', title: 'Night Raid Duo', mode: 'Duo', map: 'Bermuda', mapType: 'Night Ops', perKill: 40, entryFee: 110, prizePool: 6400, maxSlots: 28, start: getISOLocalDate(4, 22, 30), joinedPlayers: [{ uid: '5001', ign: 'DarkEcho', status: 'Verified' }, { uid: '5002', ign: 'PixelFox', status: 'Verified' }, { uid: '5003', ign: 'IronHawk', status: 'Verified' }] }
+      ];
 
       function loadFromStorage(key, fallback) {
         try {
@@ -574,156 +310,101 @@
       }
 
       function formatMoney(value) {
-        return `₹${Number(value || 0).toLocaleString("en-IN")}`;
+        return `₹${Number(value || 0).toLocaleString('en-IN')}`;
       }
 
       function showToast(message) {
-        ui.toast.textContent = message;
-        ui.toast.classList.remove("hidden");
+        const toast = document.getElementById('toast');
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.remove('hidden');
         clearTimeout(showToast.timeoutId);
-        showToast.timeoutId = setTimeout(() => ui.toast.classList.add("hidden"), 2100);
+        showToast.timeoutId = setTimeout(() => toast.classList.add('hidden'), 2100);
       }
 
-      function accessUser() {
-        return state.user || null;
+      function isAdminEmail(email) {
+        const emails = Array.isArray(window.__FF_EARN_ADMIN_EMAILS__) ? window.__FF_EARN_ADMIN_EMAILS__ : [];
+        return Boolean(email && emails.some((item) => item.toLowerCase() === String(email).toLowerCase()));
       }
 
-      function ensureUserProfile() {
-        if (!state.user) {
-          ui.authModal.classList.remove("hidden");
-          return false;
-        }
-        ui.authModal.classList.add("hidden");
-        return true;
-      }
+      window.state = {
+        user: loadFromStorage(STORAGE_KEYS.user, null),
+        tournaments: loadFromStorage(STORAGE_KEYS.tournaments, defaultTournaments),
+        payments: loadFromStorage(STORAGE_KEYS.payments, []),
+        leaderboard: loadFromStorage(STORAGE_KEYS.leaderboard, defaultLeaderboard),
+        activeTab: 'matches',
+        selectedMatchId: null,
+        filterMode: 'all'
+      };
+
+      window.ui = {
+        authModal: document.getElementById('authModal'),
+        authForm: document.getElementById('authForm'),
+        profileBtn: document.getElementById('profileBtn'),
+        profileName: document.getElementById('profileName'),
+        avatarBadge: document.getElementById('avatarBadge'),
+        userIgn: document.getElementById('userIgn'),
+        userUid: document.getElementById('userUid'),
+        walletValue: document.getElementById('walletValue'),
+        winningValue: document.getElementById('winningValue'),
+        depositValue: document.getElementById('depositValue'),
+        liveTournamentsCount: document.getElementById('liveTournamentsCount'),
+        joinedCount: document.getElementById('joinedCount'),
+        prizePoolValue: document.getElementById('prizePoolValue'),
+        matchesContainer: document.getElementById('matchesContainer'),
+        myMatchesContainer: document.getElementById('myMatchesContainer'),
+        leaderboardContainer: document.getElementById('leaderboardContainer'),
+        adminPaymentList: document.getElementById('adminPaymentList'),
+        joinModal: document.getElementById('joinModal'),
+        joinModalMatchTitle: document.getElementById('joinModalMatchTitle'),
+        joinFee: document.getElementById('joinFee'),
+        joinPrize: document.getElementById('joinPrize'),
+        upiQr: document.getElementById('upiQr'),
+        upiId: document.getElementById('upiId'),
+        joinForm: document.getElementById('joinForm'),
+        adminToggle: document.getElementById('adminToggle'),
+        adminSection: document.getElementById('adminSection'),
+        addTournamentForm: document.getElementById('addTournamentForm'),
+        toast: document.getElementById('toast'),
+        tabButtons: [...document.querySelectorAll('.tab-btn')],
+        modeButtons: [...document.querySelectorAll('.mode-btn')],
+        sections: [...document.querySelectorAll('.tab-section')]
+      };
 
       function saveState() {
-        saveToStorage(STORAGE_KEYS.user, state.user);
-        saveToStorage(STORAGE_KEYS.tournaments, state.tournaments);
-        saveToStorage(STORAGE_KEYS.payments, state.payments);
-        saveToStorage(STORAGE_KEYS.leaderboard, state.leaderboard);
-      }
-
-      function openAuth() {
-        ui.authModal.classList.remove("hidden");
-      }
-
-      function closeAuth() {
-        ui.authModal.classList.add("hidden");
-      }
-
-      function setTab(tabName) {
-        state.activeTab = tabName;
-        ui.tabButtons.forEach((btn) => {
-          const active = btn.dataset.tab === tabName;
-          btn.classList.toggle("bg-neon", active);
-          btn.classList.toggle("text-slate-950", active);
-          btn.classList.toggle("shadow-neon", active);
-          btn.classList.toggle("bg-slate-800/80", !active);
-          btn.classList.toggle("text-slate-200", !active);
-        });
-
-        ui.sections.forEach((section) => {
-          const sectionId = section.id.replace("Section", "").toLowerCase();
-          const matchesKey = section.id === "matchesSection" ? "matches" : section.id === "myMatchesSection" ? "myMatches" : section.id === "leaderboardSection" ? "leaderboard" : "admin";
-          section.classList.toggle("hidden-panel", matchesKey !== tabName);
-        });
-      }
-
-      function getUserJoinedMatchIds() {
-        const user = state.user;
-        if (!user || !Array.isArray(user.joinedMatches)) return [];
-        return user.joinedMatches;
-      }
-
-      function generateQRMatrix(seed = "ffearn@upi") {
-        const size = 7;
-        const matrix = Array.from({ length: size }, () => Array(size).fill(0));
-
-        const pattern = [
-          "1111111",
-          "1000001",
-          "1011111",
-          "1010011",
-          "1011111",
-          "1010001",
-          "1111111"
-        ];
-
-        pattern.forEach((row, i) => {
-          row.split("").forEach((cell, j) => {
-            if (cell === "1") matrix[i][j] = 1;
-          });
-        });
-
-        // add some offset for uniqueness based on seed
-        const chars = seed.split("");
-        chars.forEach((char, idx) => {
-          const value = char.charCodeAt(0) % 7;
-          const row = (idx * 2 + value) % size;
-          const col = (idx * 3 + value) % size;
-          matrix[row][col] = 1;
-        });
-
-        // stabilize center
-        matrix[3][3] = 1; matrix[3][4] = 1; matrix[4][3] = 1; matrix[4][4] = 1;
-
-        return matrix;
-      }
-
-      function renderQR() {
-        const matrix = generateQRMatrix("ffearn@upi");
-        ui.upiQr.innerHTML = "";
-        matrix.forEach((row) => {
-          row.forEach((cell) => {
-            const div = document.createElement("div");
-            if (cell) div.classList.add("dark");
-            ui.upiQr.appendChild(div);
-          });
-        });
+        saveToStorage(STORAGE_KEYS.user, window.state.user);
+        saveToStorage(STORAGE_KEYS.tournaments, window.state.tournaments);
+        saveToStorage(STORAGE_KEYS.payments, window.state.payments);
+        saveToStorage(STORAGE_KEYS.leaderboard, window.state.leaderboard);
       }
 
       function renderProfile() {
-        const user = state.user;
+        const user = window.state.user;
         if (!user) {
-          ui.profileName.textContent = "Guest";
-          ui.avatarBadge.textContent = "G";
-          ui.userIgn.textContent = "Guest Player";
-          ui.userUid.textContent = "UID: --";
-          ui.walletValue.textContent = formatMoney(0);
-          ui.winningValue.textContent = formatMoney(0);
-          ui.depositValue.textContent = formatMoney(0);
+          window.ui.profileName.textContent = 'Guest';
+          window.ui.avatarBadge.textContent = 'G';
+          window.ui.userIgn.textContent = 'Guest Player';
+          window.ui.userUid.textContent = 'UID: --';
+          window.ui.walletValue.textContent = formatMoney(0);
+          window.ui.winningValue.textContent = formatMoney(0);
+          window.ui.depositValue.textContent = formatMoney(0);
+          window.ui.adminToggle.classList.add('hidden');
           return;
         }
 
-        ui.profileName.textContent = user.ign;
-        ui.avatarBadge.textContent = (user.ign || "P").slice(0, 1).toUpperCase();
-        ui.userIgn.textContent = user.ign;
-        ui.userUid.textContent = `UID: ${user.uid}`;
-        ui.walletValue.textContent = formatMoney(user.walletBalance || 0);
-        ui.winningValue.textContent = formatMoney(user.winnings || 0);
-        ui.depositValue.textContent = formatMoney(user.deposit || 0);
+        const isAdmin = Boolean(user.role === 'admin');
+        window.ui.profileName.textContent = user.ign;
+        window.ui.avatarBadge.textContent = (user.ign || 'P').slice(0,1).toUpperCase();
+        window.ui.userIgn.textContent = user.ign;
+        window.ui.userUid.textContent = `UID: ${user.uid}`;
+        window.ui.walletValue.textContent = formatMoney(user.walletBalance || 0);
+        window.ui.winningValue.textContent = formatMoney(user.winnings || 0);
+        window.ui.depositValue.textContent = formatMoney(user.deposit || 0);
+        window.ui.adminToggle.classList.toggle('hidden', !isAdmin);
       }
 
       function getMatchById(matchId) {
-        return state.tournaments.find((m) => m.id === matchId);
-      }
-
-      function getJoinedCount() {
-        const user = state.user;
-        if (!user || !Array.isArray(user.joinedMatches)) return 0;
-        return user.joinedMatches.length;
-      }
-
-      function getTotalPrizePool() {
-        return state.tournaments.reduce((sum, match) => sum + (Number(match.prizePool) || 0), 0);
-      }
-
-      function renderStats() {
-        ui.liveTournamentsCount.textContent = state.tournaments.length;
-        ui.joinedCount.textContent = getJoinedCount();
-        ui.prizePoolValue.textContent = formatMoney(getTotalPrizePool());
-        renderProfile();
+        return window.state.tournaments.find((m) => m.id === matchId);
       }
 
       function getRoomStatus(match) {
@@ -731,491 +412,176 @@
         const now = Date.now();
         const unlockTime = start - 15 * 60 * 1000;
         if (now >= unlockTime) {
-          return {
-            unlocked: true,
-            label: "Room details open",
-            roomId: match.roomId || "FFBR-1912",
-            roomCode: match.roomCode || "NOVA@88"
-          };
+          return { unlocked: true, label: 'Room details open', roomId: match.roomId || 'FFBR-1912', roomCode: match.roomCode || 'NOVA@88' };
         }
         const mins = Math.max(0, Math.ceil((unlockTime - now) / 60000));
-        return {
-          unlocked: false,
-          label: `${mins} min left to unlock room`,
-          roomId: null,
-          roomCode: null
-        };
+        return { unlocked: false, label: `${mins} min left to unlock room`, roomId: null, roomCode: null };
       }
 
       function renderMatches() {
-        const filter = state.filterMode;
-        const user = state.user;
+        const filter = window.state.filterMode;
+        const user = window.state.user;
 
-        const filtered = state.tournaments.filter((match) => {
-          if (filter === "all") return true;
-          return match.mode === filter;
-        });
+        const filtered = window.state.tournaments.filter((match) => filter === 'all' ? true : match.mode === filter);
 
         if (!filtered.length) {
-          ui.matchesContainer.innerHTML = `
-            <div class="game-card rounded-3xl p-6 text-center">
-              <p class="text-sm text-slate-400">No matches in this category.</p>
-            </div>
-          `;
+          window.ui.matchesContainer.innerHTML = '<div class="game-card rounded-3xl p-6 text-center"><p class="text-sm text-slate-400">No matches in this category.</p></div>';
           return;
         }
 
-        ui.matchesContainer.innerHTML = filtered
-          .map((match) => {
-            const joined = match.joinedPlayers.some((player) => player.uid === user?.uid);
-            const availableSlots = Math.max(0, match.maxSlots - match.joinedPlayers.length);
-            const roomStatus = getRoomStatus(match);
-
-            return `
-              <article class="game-card overflow-hidden rounded-3xl">
-                <div class="border-b border-white/10 bg-slate-900/80 p-3">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">${match.mode}</p>
-                      <h3 class="mt-1 text-lg font-black text-white">${match.title}</h3>
-                    </div>
-                    <span class="chip rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-neon">
-                      ${match.map}
-                    </span>
-                  </div>
-                </div>
-
-                <div class="p-3">
-                  <div class="grid grid-cols-2 gap-2 text-sm">
-                    <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2">
-                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Map Type</p>
-                      <p class="mt-1 font-semibold text-white">${match.mapType}</p>
-                    </div>
-                    <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2">
-                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Per Kill</p>
-                      <p class="mt-1 font-semibold text-gold">${formatMoney(match.perKill)}</p>
-                    </div>
-                    <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2">
-                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Entry Fee</p>
-                      <p class="mt-1 font-semibold text-neon">${formatMoney(match.entryFee)}</p>
-                    </div>
-                    <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2">
-                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Prize Pool</p>
-                      <p class="mt-1 font-semibold text-white">${formatMoney(match.prizePool)}</p>
-                    </div>
-                  </div>
-
-                  <div class="mt-3 flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2">
-                    <div>
-                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Slots</p>
-                      <p class="mt-1 text-sm font-semibold text-white">${availableSlots} left</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Start</p>
-                      <p class="mt-1 text-xs font-semibold text-slate-200">${new Date(match.start).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })}</p>
-                    </div>
-                  </div>
-
-                  <div class="mt-3 rounded-xl border border-white/10 bg-slate-900/70 p-2">
-                    <div class="flex items-center justify-between gap-2">
-                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Room Access</p>
-                      <span class="text-[10px] ${roomStatus.unlocked ? "text-neon" : "text-gold"}">${roomStatus.unlocked ? "Unlocked" : "Locked"}</span>
-                    </div>
-                    ${
-                      roomStatus.unlocked
-                        ? `
-                          <div class="mt-2 flex items-center justify-between">
-                            <div>
-                              <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Room ID</p>
-                              <p class="mt-1 text-sm font-bold text-white">${roomStatus.roomId}</p>
-                            </div>
-                            <div class="text-right">
-                              <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Password</p>
-                              <p class="mt-1 text-sm font-bold text-neon">${roomStatus.roomCode}</p>
-                            </div>
-                          </div>
-                        `
-                        : `
-                          <p class="mt-2 text-sm text-slate-300">${roomStatus.label}</p>
-                        `
-                    }
-                  </div>
-
-                  <div class="mt-4">
-                    ${
-                      joined
-                        ? `
-                          <button type="button" class="w-full rounded-xl border border-neon/30 bg-neon/10 px-4 py-3 text-sm font-bold uppercase tracking-wide text-neon">
-                            Joined • Verified
-                          </button>
-                        `
-                        : `
-                          <button
-                            type="button"
-                            class="join-match-btn w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon"
-                            data-match-id="${match.id}"
-                          >
-                            Join Match
-                          </button>
-                        `
-                    }
-                  </div>
-                </div>
-              </article>
-            `;
-          })
-          .join("");
-      }
-
-      function renderMyMatches() {
-        const user = state.user;
-        if (!user || !Array.isArray(user.joinedMatches) || !user.joinedMatches.length) {
-          ui.myMatchesContainer.innerHTML = `
-            <div class="game-card rounded-3xl p-6 text-center">
-              <p class="text-sm text-slate-400">You have not joined any match yet.</p>
-            </div>
-          `;
-          return;
-        }
-
-        const joinedMatches = user.joinedMatches
-          .map((matchId) => getMatchById(matchId))
-          .filter(Boolean);
-
-        ui.myMatchesContainer.innerHTML = joinedMatches
-          .map((match) => {
-            const roomStatus = getRoomStatus(match);
-            const joinedPlayer = match.joinedPlayers.find((p) => p.uid === user.uid);
-            const statusText = joinedPlayer?.status || "Verified";
-
-            return `
-              <article class="game-card rounded-3xl p-3">
+        window.ui.matchesContainer.innerHTML = filtered.map((match) => {
+          const joined = match.joinedPlayers.some((player) => player.uid === user?.uid);
+          const availableSlots = Math.max(0, match.maxSlots - match.joinedPlayers.length);
+          const roomStatus = getRoomStatus(match);
+          return `
+            <article class="game-card overflow-hidden rounded-3xl">
+              <div class="border-b border-white/10 bg-slate-900/80 p-3">
                 <div class="flex items-start justify-between gap-3">
                   <div>
                     <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">${match.mode}</p>
                     <h3 class="mt-1 text-lg font-black text-white">${match.title}</h3>
                   </div>
-                  <span class="rounded-full border border-neon/30 bg-neon/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-neon">
-                    ${statusText}
-                  </span>
+                  <span class="chip rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-neon">${match.map}</span>
+                </div>
+              </div>
+              <div class="p-3">
+                <div class="grid grid-cols-2 gap-2 text-sm">
+                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Map Type</p><p class="mt-1 font-semibold text-white">${match.mapType}</p></div>
+                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Per Kill</p><p class="mt-1 font-semibold text-gold">${formatMoney(match.perKill)}</p></div>
+                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Entry Fee</p><p class="mt-1 font-semibold text-neon">${formatMoney(match.entryFee)}</p></div>
+                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Prize Pool</p><p class="mt-1 font-semibold text-white">${formatMoney(match.prizePool)}</p></div>
                 </div>
 
-                <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
-                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2">
-                    <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Map</p>
-                    <p class="mt-1 font-semibold text-white">${match.map}</p>
-                  </div>
-                  <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2">
-                    <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Prize</p>
-                    <p class="mt-1 font-semibold text-gold">${formatMoney(match.prizePool)}</p>
-                  </div>
+                <div class="mt-3 flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2">
+                  <div><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Slots</p><p class="mt-1 text-sm font-semibold text-white">${availableSlots} left</p></div>
+                  <div class="text-right"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Start</p><p class="mt-1 text-xs font-semibold text-slate-200">${new Date(match.start).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</p></div>
                 </div>
 
-                <div class="mt-3 rounded-xl border border-white/10 bg-slate-900/70 p-3">
-                  ${
-                    roomStatus.unlocked
-                      ? `
-                        <div class="flex items-center justify-between">
-                          <div>
-                            <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Room ID</p>
-                            <p class="mt-1 text-base font-black text-white">${roomStatus.roomId}</p>
-                          </div>
-                          <div class="text-right">
-                            <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Password</p>
-                            <p class="mt-1 text-base font-black text-neon">${roomStatus.roomCode}</p>
-                          </div>
-                        </div>
-                      `
-                      : `
-                        <p class="text-sm text-slate-300">${roomStatus.label}</p>
-                      `
-                  }
+                <div class="mt-3 rounded-xl border border-white/10 bg-slate-900/70 p-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Room Access</p>
+                    <span class="text-[10px] ${roomStatus.unlocked ? 'text-neon' : 'text-gold'}">${roomStatus.unlocked ? 'Unlocked' : 'Locked'}</span>
+                  </div>
+                  ${roomStatus.unlocked ? `<div class="mt-2 flex items-center justify-between"><div><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Room ID</p><p class="mt-1 text-sm font-bold text-white">${roomStatus.roomId}</p></div><div class="text-right"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Password</p><p class="mt-1 text-sm font-bold text-neon">${roomStatus.roomCode}</p></div></div>` : `<p class="mt-2 text-sm text-slate-300">${roomStatus.label}</p>`}
                 </div>
-              </article>
-            `;
-          })
-          .join("");
+
+                <div class="mt-4">
+                  ${joined ? '<button type="button" class="w-full rounded-xl border border-neon/30 bg-neon/10 px-4 py-3 text-sm font-bold uppercase tracking-wide text-neon">Joined • Verified</button>' : `<button type="button" class="join-match-btn w-full rounded-xl bg-gradient-to-r from-neon to-neon2 px-4 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-neon" data-match-id="${match.id}">Join Match</button>`}
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function renderMyMatches() {
+        const user = window.state.user;
+        if (!user || !Array.isArray(user.joinedMatches) || !user.joinedMatches.length) {
+          window.ui.myMatchesContainer.innerHTML = '<div class="game-card rounded-3xl p-6 text-center"><p class="text-sm text-slate-400">You have not joined any match yet.</p></div>';
+          return;
+        }
+
+        const joinedMatches = user.joinedMatches.map((matchId) => getMatchById(matchId)).filter(Boolean);
+        window.ui.myMatchesContainer.innerHTML = joinedMatches.map((match) => {
+          const roomStatus = getRoomStatus(match);
+          const joinedPlayer = match.joinedPlayers.find((p) => p.uid === user.uid);
+          const statusText = joinedPlayer?.status || 'Verified';
+          return `
+            <article class="game-card rounded-3xl p-3">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-[10px] uppercase tracking-[0.22em] text-slate-400">${match.mode}</p>
+                  <h3 class="mt-1 text-lg font-black text-white">${match.title}</h3>
+                </div>
+                <span class="rounded-full border border-neon/30 bg-neon/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-neon">${statusText}</span>
+              </div>
+              <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
+                <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Map</p><p class="mt-1 font-semibold text-white">${match.map}</p></div>
+                <div class="rounded-xl border border-white/10 bg-slate-900/70 p-2"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Prize</p><p class="mt-1 font-semibold text-gold">${formatMoney(match.prizePool)}</p></div>
+              </div>
+              <div class="mt-3 rounded-xl border border-white/10 bg-slate-900/70 p-3">
+                ${roomStatus.unlocked ? `<div class="flex items-center justify-between"><div><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Room ID</p><p class="mt-1 text-base font-black text-white">${roomStatus.roomId}</p></div><div class="text-right"><p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">Password</p><p class="mt-1 text-base font-black text-neon">${roomStatus.roomCode}</p></div></div>` : `<p class="text-sm text-slate-300">${roomStatus.label}</p>`}
+              </div>
+            </article>
+          `;
+        }).join('');
       }
 
       function renderLeaderboard() {
-        const sorted = [...state.leaderboard].sort((a, b) => b.totalPrize - a.totalPrize);
-        ui.leaderboardContainer.innerHTML = sorted
-          .map((player, index) => {
-            const rankColor =
-              index === 0 ? "text-gold" :
-              index === 1 ? "text-slate-300" :
-              index === 2 ? "text-amber-600" : "text-slate-200";
-
-            return `
-              <div class="game-card rounded-2xl p-3">
-                <div class="flex items-center gap-3">
-                  <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-neon to-neon2 text-sm font-black text-slate-950">
-                    ${player.badge}
-                  </div>
-                  <div class="flex-1">
-                    <div class="flex items-center justify-between gap-3">
-                      <div>
-                        <p class="font-bold text-white">${index + 1}. ${player.name}</p>
-                        <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">UID: ${player.uid}</p>
-                      </div>
-                      <div class="text-right">
-                        <p class="${rankColor} text-sm font-black">${formatMoney(player.totalPrize)}</p>
-                        <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">${player.wins} wins</p>
-                      </div>
+        const sorted = [...window.state.leaderboard].sort((a, b) => b.totalPrize - a.totalPrize);
+        window.ui.leaderboardContainer.innerHTML = sorted.map((player, index) => {
+          const rankColor = index === 0 ? 'text-gold' : index === 1 ? 'text-slate-300' : index === 2 ? 'text-amber-600' : 'text-slate-200';
+          return `
+            <div class="game-card rounded-2xl p-3">
+              <div class="flex items-center gap-3">
+                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-neon to-neon2 text-sm font-black text-slate-950">${player.badge}</div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between gap-3">
+                    <div>
+                      <p class="font-bold text-white">${index + 1}. ${player.name}</p>
+                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">UID: ${player.uid}</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="${rankColor} text-sm font-black">${formatMoney(player.totalPrize)}</p>
+                      <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">${player.wins} wins</p>
                     </div>
                   </div>
                 </div>
               </div>
-            `;
-          })
-          .join("");
+            </div>
+          `;
+        }).join('');
+      }
+
+      function getJoinedCount() {
+        const user = window.state.user;
+        return user && Array.isArray(user.joinedMatches) ? user.joinedMatches.length : 0;
+      }
+
+      function getTotalPrizePool() {
+        return window.state.tournaments.reduce((sum, match) => sum + (Number(match.prizePool) || 0), 0);
+      }
+
+      function renderStats() {
+        window.ui.liveTournamentsCount.textContent = window.state.tournaments.length;
+        window.ui.joinedCount.textContent = getJoinedCount();
+        window.ui.prizePoolValue.textContent = formatMoney(getTotalPrizePool());
+        renderProfile();
       }
 
       function renderAdminPayments() {
-        if (!state.payments || !state.payments.length) {
-          ui.adminPaymentList.innerHTML = `
-            <div class="rounded-2xl border border-white/10 bg-slate-900/70 p-3 text-sm text-slate-400">
-              No join requests yet.
+        if (!window.state.payments || !window.state.payments.length) {
+          window.ui.adminPaymentList.innerHTML = '<div class="rounded-2xl border border-white/10 bg-slate-900/70 p-3 text-sm text-slate-400">No join requests yet.</div>';
+          return;
+        }
+
+        window.ui.adminPaymentList.innerHTML = window.state.payments.map((payment) => {
+          const match = getMatchById(payment.matchId);
+          const statusClass = payment.status === 'Approved' ? 'approved' : payment.status === 'Rejected' ? 'rejected' : 'pending';
+          return `
+            <div class="rounded-2xl border border-white/10 bg-slate-900/70 p-3">
+              <div class="flex items-center justify-between gap-2">
+                <div>
+                  <p class="text-sm font-bold text-white">${payment.userIgn}</p>
+                  <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">UID: ${payment.userUid}</p>
+                </div>
+                <span class="rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide ${statusClass}">${payment.status}</span>
+              </div>
+              <div class="mt-2 text-xs text-slate-300">
+                <p>Match: ${match ? match.title : 'Unknown'}</p>
+                <p>UTR: ${payment.utr || '--'}</p>
+                <p>Amount: ${formatMoney(payment.amount || 0)}</p>
+              </div>
+              ${payment.status === 'Pending' ? `<div class="mt-3 flex gap-2">
+                <button data-action="approve-payment" data-payment-id="${payment.id}" class="flex-1 rounded-xl bg-neon px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-950">Approve</button>
+                <button data-action="reject-payment" data-payment-id="${payment.id}" class="flex-1 rounded-xl border border-white/10 bg-slate-800/80 px-3 py-2 text-xs font-bold uppercase tracking-wide text-white">Reject</button>
+              </div>` : ''}
             </div>
           `;
-          return;
-        }
-
-        ui.adminPaymentList.innerHTML = state.payments
-          .map((payment) => {
-            const match = getMatchById(payment.matchId);
-            return `
-              <div class="rounded-2xl border border-white/10 bg-slate-900/70 p-3">
-                <div class="flex items-center justify-between gap-2">
-                  <div>
-                    <p class="text-sm font-bold text-white">${payment.userIgn}</p>
-                    <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400">UID: ${payment.userUid}</p>
-                  </div>
-                  <span class="rounded-full ${payment.status === "Approved" ? "bg-neon/10 text-neon border border-neon/30" : "bg-gold/10 text-gold border border-gold/30"} px-2 py-1 text-[10px] font-bold uppercase tracking-wide">
-                    ${payment.status}
-                  </span>
-                </div>
-
-                <div class="mt-2 text-xs text-slate-300">
-                  <p>Match: ${match ? match.title : "Unknown"}</p>
-                  <p>UTR: ${payment.utr}</p>
-                  <p>Amount: ${formatMoney(payment.amount)}</p>
-                </div>
-
-                ${payment.proof ? `
-                  <img src="${payment.proof}" alt="Payment proof" class="mt-3 h-20 w-full rounded-xl object-cover border border-white/10" />
-                ` : ""}
-                
-                <div class="mt-3 flex gap-2">
-                  ${payment.status === "Approved" ? `
-                    <button class="approve-btn flex-1 rounded-xl border border-neon/30 bg-neon/10 px-3 py-2 text-xs font-bold uppercase tracking-wide text-neon" disabled>
-                      Approved
-                    </button>
-                  ` : `
-                    <button class="approve-btn flex-1 rounded-xl bg-gradient-to-r from-neon to-neon2 px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-950" data-payment-id="${payment.id}">
-                      Approve
-                    </button>
-                  `}
-                </div>
-              </div>
-            `;
-          })
-          .join("");
+        }).join('');
       }
 
-      function openJoinModal(matchId) {
-        const match = getMatchById(matchId);
-        if (!match) return;
-        state.selectedMatchId = matchId;
-
-        ui.joinModalMatchTitle.textContent = match.title;
-        ui.joinFee.textContent = formatMoney(match.entryFee);
-        ui.joinPrize.textContent = formatMoney(match.prizePool);
-        ui.upiId.textContent = "ffearn@upi";
-
-        renderQR();
-        ui.joinModal.classList.remove("hidden");
-        ui.joinModal.classList.add("flex");
-      }
-
-      function closeJoinModal() {
-        ui.joinModal.classList.add("hidden");
-        ui.joinModal.classList.remove("flex");
-        state.selectedMatchId = null;
-        document.getElementById("joinForm").reset();
-      }
-
-      function saveJoinedMatch(matchId, user) {
-        const tournament = getMatchById(matchId);
-        if (!tournament) return;
-
-        if (!tournament.joinedPlayers.some((p) => p.uid === user.uid)) {
-          tournament.joinedPlayers.push({
-            uid: user.uid,
-            ign: user.ign,
-            status: "Verified"
-          });
-        }
-
-        if (!user.joinedMatches) user.joinedMatches = [];
-        if (!user.joinedMatches.includes(matchId)) {
-          user.joinedMatches.push(matchId);
-        }
-
-        if (!user.walletBalance) user.walletBalance = 0;
-        if (!user.deposit) user.deposit = 0;
-        user.deposit += Number(tournament.entryFee || 0);
-        user.walletBalance = (Number(user.walletBalance) || 0) + 0;
-      }
-
-      function handleAuthSubmit(e) {
-        e.preventDefault();
-        const ign = document.getElementById("ignInput").value.trim();
-        const uid = document.getElementById("uidInput").value.trim();
-
-        if (!ign || !uid) {
-          showToast("IGN and UID are required");
-          return;
-        }
-
-        state.user = {
-          ign,
-          uid,
-          walletBalance: 2500,
-          winnings: 1850,
-          deposit: 1300,
-          joinedMatches: []
-        };
-
-        saveState();
-        closeAuth();
-        renderAll();
-        showToast("Profile created successfully");
-      }
-
-      function handleJoinSubmit(e) {
-        e.preventDefault();
-        const user = accessUser();
-        if (!user) {
-          openAuth();
-          return;
-        }
-
-        const match = getMatchById(state.selectedMatchId);
-        if (!match) return;
-
-        const utr = document.getElementById("utrInput").value.trim();
-        const proofInput = document.getElementById("proofInput");
-
-        if (!utr) {
-          showToast("Enter UTR / Transaction ID");
-          return;
-        }
-
-        const savePayment = async () => {
-          let proofData = "";
-          if (proofInput.files && proofInput.files[0]) {
-            proofData = await fileToDataURL(proofInput.files[0]);
-          }
-
-          const payment = {
-            id: "pay_" + Date.now() + "_" + Math.random().toString(16).slice(2),
-            userIgn: user.ign,
-            userUid: user.uid,
-            matchId: match.id,
-            amount: Number(match.entryFee),
-            utr,
-            proof: proofData || "",
-            status: "Approved"
-          };
-
-          state.payments.unshift(payment);
-
-          // user join updates
-          if (!match.joinedPlayers.some((p) => p.uid === user.uid)) {
-            match.joinedPlayers.push({ uid: user.uid, ign: user.ign, status: "Verified" });
-          }
-
-          if (!user.joinedMatches) user.joinedMatches = [];
-          if (!user.joinedMatches.includes(match.id)) {
-            user.joinedMatches.push(match.id);
-          }
-
-          user.deposit = (Number(user.deposit) || 0) + Number(match.entryFee);
-          user.walletBalance = Number(user.walletBalance || 0);
-
-          saveState();
-          renderAll();
-          closeJoinModal();
-          showToast("Payment verified and match joined");
-        };
-
-        savePayment();
-      }
-
-      function fileToDataURL(file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result || "");
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
-        });
-      }
-
-      function handleAddTournamentSubmit(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-
-        const tournament = {
-          id: "new_" + Date.now(),
-          title: data.title.trim(),
-          mode: data.mode,
-          map: data.map.trim(),
-          mapType: data.mapType.trim(),
-          perKill: Number(data.perKill),
-          entryFee: Number(data.entryFee),
-          prizePool: Number(data.prizePool),
-          maxSlots: Number(data.maxSlots),
-          start: new Date(data.start).toISOString().slice(0, 16),
-          joinedPlayers: []
-        };
-
-        state.tournaments.unshift(tournament);
-        saveState();
-        renderAll();
-        e.target.reset();
-        showToast("Tournament added");
-      }
-
-      function handleAdminApproval(paymentId) {
-        const payment = state.payments.find((p) => p.id === paymentId);
-        if (!payment) return;
-
-        payment.status = "Approved";
-
-        const match = getMatchById(payment.matchId);
-        if (match) {
-          if (!match.joinedPlayers.some((p) => p.uid === payment.userUid)) {
-            match.joinedPlayers.push({
-              uid: payment.userUid,
-              ign: payment.userIgn,
-              status: "Verified"
-            });
-          }
-        }
-
-        const user = state.user && state.user.uid === payment.userUid ? state.user : null;
-        if (user && !user.joinedMatches.includes(payment.matchId)) {
-          user.joinedMatches.push(payment.matchId);
-        }
-
-        saveState();
-        renderAll();
-        showToast("Payment approved");
-      }
-
-      function renderAll() {
+      function renderApp() {
         renderStats();
         renderMatches();
         renderMyMatches();
@@ -1223,93 +589,264 @@
         renderAdminPayments();
       }
 
-      function bindEvents() {
-        ui.profileBtn.addEventListener("click", () => {
-          if (!state.user) openAuth();
+      function ensureUserProfile() {
+        if (!window.state.user) {
+          window.ui.authModal.classList.remove('hidden');
+          return false;
+        }
+        window.ui.authModal.classList.add('hidden');
+        return true;
+      }
+
+      function setTab(tabName) {
+        window.state.activeTab = tabName;
+        window.ui.tabButtons.forEach((btn) => {
+          const active = btn.dataset.tab === tabName;
+          btn.classList.toggle('bg-neon', active);
+          btn.classList.toggle('text-slate-950', active);
+          btn.classList.toggle('shadow-neon', active);
+          btn.classList.toggle('bg-slate-800/80', !active);
+          btn.classList.toggle('text-slate-200', !active);
         });
 
-        ui.authForm.addEventListener("submit", handleAuthSubmit);
-
-        document.querySelectorAll(".join-match-btn").forEach((button) => {
-          button.addEventListener("click", () => {
-            if (!state.user) {
-              openAuth();
-              return;
-            }
-            openJoinModal(button.dataset.matchId);
-          });
-        });
-
-        document.body.addEventListener("click", (event) => {
-          const joinBtn = event.target.closest(".join-match-btn");
-          if (joinBtn) {
-            if (!state.user) {
-              openAuth();
-              return;
-            }
-            openJoinModal(joinBtn.dataset.matchId);
-          }
-
-          const approveBtn = event.target.closest(".approve-btn");
-          if (approveBtn) {
-            handleAdminApproval(approveBtn.dataset.paymentId);
-          }
-
-          const modeBtn = event.target.closest(".mode-btn");
-          if (modeBtn) {
-            state.filterMode = modeBtn.dataset.mode;
-            ui.modeButtons.forEach((btn) => {
-              const active = btn.dataset.mode === state.filterMode;
-              btn.classList.toggle("active", active);
-              btn.classList.toggle("bg-neon/10", active);
-              btn.classList.toggle("border-neon/30", active);
-              btn.classList.toggle("text-neon", active);
-              btn.classList.toggle("bg-slate-800/80", !active);
-              btn.classList.toggle("border-white/10", !active);
-              btn.classList.toggle("text-slate-200", !active);
-            });
-
-            renderMatches();
-          }
-
-          const tabBtn = event.target.closest(".tab-btn");
-          if (tabBtn) {
-            setTab(tabBtn.dataset.tab);
-          }
-        });
-
-        ui.joinForm.addEventListener("submit", handleJoinSubmit);
-        ui.addTournamentForm.addEventListener("submit", handleAddTournamentSubmit);
-
-        document.getElementById("closeJoinModal").addEventListener("click", closeJoinModal);
-
-        ui.adminToggle.addEventListener("click", () => {
-          const isHidden = ui.adminSection.classList.contains("hidden-panel");
-          if (isHidden) {
-            setTab("admin");
-          } else {
-            setTab("matches");
-          }
-        });
-
-        window.addEventListener("storage", () => {
-          state.user = loadFromStorage(STORAGE_KEYS.user, null);
-          state.tournaments = loadFromStorage(STORAGE_KEYS.tournaments, defaultTournaments);
-          state.payments = loadFromStorage(STORAGE_KEYS.payments, []);
-          state.leaderboard = loadFromStorage(STORAGE_KEYS.leaderboard, defaultLeaderboard);
-          renderAll();
+        window.ui.sections.forEach((section) => {
+          const key = section.id === 'matchesSection' ? 'matches' : section.id === 'myMatchesSection' ? 'myMatches' : section.id === 'leaderboardSection' ? 'leaderboard' : 'admin';
+          section.classList.toggle('hidden-panel', key !== tabName);
         });
       }
 
-      function initialize() {
-        renderQR();
-        renderAll();
-        setTab("matches");
-        ensureUserProfile();
-        bindEvents();
+      function generateQRMatrix(seed = 'yourname@upi') {
+        const size = 7;
+        const matrix = Array.from({ length: size }, () => Array(size).fill(0));
+        const pattern = ['1111111','1000001','1011111','1010011','1011111','1010001','1111111'];
+        pattern.forEach((row, i) => row.split('').forEach((cell, j) => { if (cell === '1') matrix[i][j] = 1; }));
+        const chars = seed.split('');
+        chars.forEach((char, idx) => { const value = char.charCodeAt(0) % 7; const row = (idx * 2 + value) % size; const col = (idx * 3 + value) % size; matrix[row][col] = 1; });
+        matrix[3][3] = 1; matrix[3][4] = 1; matrix[4][3] = 1; matrix[4][4] = 1;
+        return matrix;
       }
 
-      initialize();
+      function renderQR() {
+        const matrix = generateQRMatrix(window.__FF_EARN_UPI_ID__ || 'yourname@upi');
+        window.ui.upiQr.innerHTML = '';
+        matrix.forEach((row) => row.forEach((cell) => { const div = document.createElement('div'); if (cell) div.classList.add('dark'); window.ui.upiQr.appendChild(div); }));
+      }
+
+      function createGuestProfile(ign, uid) {
+        return {
+          ign,
+          uid,
+          walletBalance: 2500,
+          winnings: 1850,
+          deposit: 0,
+          joinedMatches: [],
+          role: isAdminEmail(ign) ? 'admin' : 'user'
+        };
+      }
+
+      function openAuth() { window.ui.authModal.classList.remove('hidden'); }
+      function closeAuth() { window.ui.authModal.classList.add('hidden'); }
+
+      window.ui.profileBtn.addEventListener('click', () => {
+        if (!window.state.user) {
+          openAuth();
+          return;
+        }
+        window.state.user = null;
+        saveState();
+        renderApp();
+        showToast('Logged out');
+      });
+
+      window.ui.authForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const ign = document.getElementById('ignInput').value.trim();
+        const uid = document.getElementById('uidInput').value.trim();
+        if (!ign || !uid) {
+          showToast('Enter IGN and UID');
+          return;
+        }
+
+        window.state.user = { ign, uid, walletBalance: 2500, winnings: 1850, deposit: 0, joinedMatches: [], role: isAdminEmail(ign) ? 'admin' : 'user' };
+        saveState();
+        closeAuth();
+        renderApp();
+        showToast('Welcome to FF EARN');
+      });
+
+      window.ui.tabButtons.forEach((button) => button.addEventListener('click', () => setTab(button.dataset.tab)));
+
+      window.ui.modeButtons.forEach((button) => button.addEventListener('click', () => {
+        window.state.filterMode = button.dataset.mode;
+        window.ui.modeButtons.forEach((btn) => {
+          const active = btn === button;
+          btn.classList.toggle('active', active);
+          btn.classList.toggle('border-neon/30', active);
+          btn.classList.toggle('bg-neon/10', active);
+          btn.classList.toggle('text-neon', active);
+          btn.classList.toggle('border-white/10', !active);
+          btn.classList.toggle('bg-slate-800/80', !active);
+          btn.classList.toggle('text-slate-200', !active);
+        });
+        renderMatches();
+      }));
+
+      document.addEventListener('click', (event) => {
+        const joinButton = event.target.closest('.join-match-btn');
+        if (joinButton) {
+          if (!ensureUserProfile()) return;
+          const match = getMatchById(joinButton.dataset.matchId);
+          if (!match) return;
+          window.state.selectedMatchId = match.id;
+          window.ui.joinModalMatchTitle.textContent = match.title;
+          window.ui.joinFee.textContent = formatMoney(match.entryFee);
+          window.ui.joinPrize.textContent = formatMoney(match.prizePool);
+          window.ui.upiId.textContent = window.__FF_EARN_UPI_ID__ || 'yourname@upi';
+          renderQR();
+          window.ui.joinModal.classList.remove('hidden');
+          window.ui.joinModal.classList.add('flex');
+          return;
+        }
+
+        const paymentAction = event.target.closest('[data-action]');
+        if (!paymentAction) return;
+
+        const action = paymentAction.dataset.action;
+        const paymentId = paymentAction.dataset.paymentId;
+        if (!paymentId) return;
+
+        const payment = window.state.payments.find((p) => p.id === paymentId);
+        if (!payment) return;
+
+        if (action === 'approve-payment') {
+          payment.status = 'Approved';
+          const user = window.state.user; // admin action performed as current user, for demo only
+          if (!user || user.role !== 'admin') {
+            showToast('Admin access required');
+            return;
+          }
+          const match = getMatchById(payment.matchId);
+          const targetUser = { uid: payment.userUid, ign: payment.userIgn };
+          const existingUserData = loadFromStorage(STORAGE_KEYS.user, null);
+          if (existingUserData && existingUserData.uid === payment.userUid) {
+            existingUserData.walletBalance = Number(existingUserData.walletBalance || 0) + Number(payment.amount || 0);
+            existingUserData.deposit = Number(existingUserData.deposit || 0) + Number(payment.amount || 0);
+            if (!Array.isArray(existingUserData.joinedMatches)) existingUserData.joinedMatches = [];
+            if (!existingUserData.joinedMatches.includes(payment.matchId)) existingUserData.joinedMatches.push(payment.matchId);
+            window.state.user = existingUserData;
+            saveToStorage(STORAGE_KEYS.user, existingUserData);
+          }
+          if (match && !match.joinedPlayers.some((p) => p.uid === payment.userUid)) {
+            match.joinedPlayers.push({ uid: payment.userUid, ign: payment.userIgn, status: 'Verified' });
+          }
+          saveState();
+          renderApp();
+          showToast('Payment approved and wallet updated');
+        }
+
+        if (action === 'reject-payment') {
+          payment.status = 'Rejected';
+          saveState();
+          renderApp();
+          showToast('Payment rejected');
+        }
+      });
+
+      window.ui.joinForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!ensureUserProfile()) return;
+        const utr = document.getElementById('utrInput').value.trim();
+        const proofInput = document.getElementById('proofInput');
+        if (!utr) {
+          showToast('Enter UTR');
+          return;
+        }
+
+        const match = getMatchById(window.state.selectedMatchId);
+        if (!match) {
+          showToast('Invalid match');
+          return;
+        }
+
+        const payment = {
+          id: `pay_${Date.now()}`,
+          userIgn: window.state.user.ign,
+          userUid: window.state.user.uid,
+          matchId: match.id,
+          amount: Number(match.entryFee || 0),
+          utr,
+          proofName: proofInput && proofInput.files && proofInput.files[0] ? proofInput.files[0].name : 'manual-upload',
+          status: 'Pending',
+          createdAt: new Date().toISOString()
+        };
+
+        window.state.payments.unshift(payment);
+        saveState();
+        renderAdminPayments();
+        window.ui.joinModal.classList.add('hidden');
+        window.ui.joinModal.classList.remove('flex');
+        window.ui.joinForm.reset();
+        showToast('Payment sent for admin review');
+      });
+
+      document.getElementById('closeJoinModal').addEventListener('click', () => {
+        window.ui.joinModal.classList.add('hidden');
+        window.ui.joinModal.classList.remove('flex');
+      });
+
+      window.ui.adminToggle.addEventListener('click', () => {
+        const user = window.state.user;
+        if (!user || user.role !== 'admin') {
+          showToast('Admin access required');
+          return;
+        }
+        setTab('admin');
+      });
+
+      window.ui.addTournamentForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = new FormData(event.currentTarget);
+        const title = form.get('title');
+        const mode = form.get('mode');
+        const map = form.get('map');
+        const mapType = form.get('mapType');
+        const perKill = Number(form.get('perKill') || 0);
+        const entryFee = Number(form.get('entryFee') || 0);
+        const prizePool = Number(form.get('prizePool') || 0);
+        const maxSlots = Number(form.get('maxSlots') || 0);
+        const start = form.get('start');
+
+        if (!title || !start) {
+          showToast('Add title and start time');
+          return;
+        }
+
+        window.state.tournaments.unshift({
+          id: `custom-${Date.now()}`,
+          title,
+          mode,
+          map,
+          mapType,
+          perKill,
+          entryFee,
+          prizePool,
+          maxSlots,
+          start,
+          joinedPlayers: []
+        });
+
+        saveState();
+        renderApp();
+        event.currentTarget.reset();
+        showToast('Tournament added');
+      });
+
+      renderQR();
+      renderApp();
+      ensureUserProfile();
+      window.renderApp = renderApp;
+      window.saveState = saveState;
+      window.ensureUserProfile = ensureUserProfile;
     </script>
   </body>
 </html>
